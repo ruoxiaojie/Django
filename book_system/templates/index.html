@@ -1,0 +1,60 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统</title>
+    <style>
+        .outer{
+            margin: 50px auto;
+            height: 400px;
+            width: 60%;
+            border: 1px solid rebeccapurple;
+            background-color: #cccccc;
+        }
+        .table{
+            background-color: #26ff41;
+        }
+        span{
+            color: #ff1130;
+            font-size: 22px;
+            margin: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static "dist/css/bootstrap.css" %}">
+    <script src="{% static "dist/js/jquery-3.1.1.js" %}"></script>
+    <script src="{% static "dist/js/bootstrap.js" %}"></script>
+</head>
+
+<body>
+<span class="glyphicon glyphicon-folder-open"> 欢迎来到图书管理系统</span>
+<hr>
+<div class="outer">
+    <a href="/addbook/"><button type="button" class="btn btn-primary">添加</button></a>
+    <table class="table table-bordered">
+            <tr>
+                <th>编号</th>
+                <th>书名</th>
+                <th>价格</th>
+                <th>作者</th>
+                <th>出版社</th>
+                <th>操作</th>
+            </tr>
+        {% for book in all_book_list %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.publiosh }}</td>
+            <td>
+                   <a href="/delete/?id={{ book.id }}"><button type="button" class="btn btn-danger">删除</button></a>
+                   <a href=""><button type="button" class="btn btn-info">编辑</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
