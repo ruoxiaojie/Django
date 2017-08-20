@@ -21,9 +21,6 @@
             font-size: 22px;
             margin: 10px;
         }
-        .img1{
-            float: left;
-        }
     </style>
     <link rel="stylesheet" href="{% static "dist/css/bootstrap.css" %}">
     <script src="{% static "dist/js/jquery-3.1.1.js" %}"></script>
@@ -33,11 +30,6 @@
 <body>
 <span class="glyphicon glyphicon-folder-open"> 欢迎来到图书管理系统</span>
 <hr>
-
-
-
-
-<span class="img1"><img src="/static/img/zuo.png" alt="" class="img-circle"></span>
 <div class="outer">
     <a href="/addbook/"><button type="button" class="btn btn-primary">添加</button></a>
     <table class="table table-bordered">
