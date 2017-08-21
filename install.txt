@@ -1,1 +1,0 @@
-﻿pip3 install -i https://pypi.doubanio.com/simple/ Django==1.11.4
