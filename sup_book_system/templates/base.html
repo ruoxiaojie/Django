@@ -1,0 +1,132 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static "dist/css/bootstrap.css" %}">
+    <script src="{% static "dist/js/jquery-3.1.1.js" %}"></script>
+    <script src="{% static "dist/js/bootstrap.js" %}"></script>
+    <style>
+
+
+        .tou{
+            background-color: #cccccc;
+        }
+        span{
+            color: #ff1130;
+            font-size: 22px;
+            margin: 10px;
+        }
+        a{
+            color: #ff1130;
+            font-size: 22px;
+            margin: 10px;
+            position: fixed;
+            top: 1px;
+        }
+        .left{
+            width: 300px;
+            position: absolute;
+            top:42px;
+            left: 0;
+            bottom: 0;
+            background-color: lightpink;
+
+        }
+
+
+        .right{
+            position: absolute;
+            top: 42px;
+            bottom: 0;
+            left: 300px;
+            right: 0;
+            overflow: scroll;
+{#            background-color: #5cb85c;#}
+        }
+        .title{
+            text-align: center;
+            line-height: 30px;
+            color: #1a81ff;
+            font-size: 30px;
+        }
+        .item{margin: 30px}
+        .hide{display: none}
+        .con{
+            color: #d43f3a;
+            text-align: center;
+            line-height: 16px;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="row tou">
+  <div class="col-md-10"><span class="glyphicon glyphicon-folder-open"> 欢迎来到图书管理系统</span></div>
+  <div class="col-md-1"><a href="http://www.baidu.com" class="a1">登入</a></div>
+  <div class="col-md-1"><a href="https://passport.baidu.com/v2/?reg&tt=1503301087191&gid=CFA2704-3471-4C75-8A0E-699B4B3BE2AF&tpl=mn&u=https%3A%2F%2Fwww.baidu.com%2F" class="a1">注册</a></div>
+</div>
+
+
+<div class="box">
+     <div class="left">
+            <div class="left_menu">
+                <div class="item">
+                    <div class="title">计算机</div>
+                    <div class="con">
+                        <p>python从入门到放弃</p>
+                        <p>python从入门到放弃</p>
+                        <p>python从入门到放弃</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="title">文学类</div>
+                    <div class="con  hide">
+                        <p>python从入门到放弃</p>
+                        <p>python从入门到放弃</p>
+                        <p>python从入门到放弃</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="title">科学类</div>
+                    <div class="con hide">
+                        <p>python从入门到放弃</p>
+                        <p>python从入门到放弃</p>
+                        <p>python从入门到放弃</p>
+                    </div>
+            </div>
+            </div>
+    </div>
+
+
+
+
+         <div class="right">
+
+        </div>
+</div>
+</body>
+    <script>
+        var eles=document.getElementsByClassName("title");
+        for (var i=0;i<eles.length;i++){
+            eles[i].onclick=function () {
+//                console.log(this)
+
+                this.nextElementSibling.classList.remove("hide");
+                var arr_item=this.parentElement.parentElement.children;
+                var ele_curr_p=this.parentElement;
+
+                for (var j=0;j<arr_item.length;j++){
+//                    if (arr_item[j]!=ele_curr_p){
+                      if (arr_item[j]!=ele_curr_p){
+                        arr_item[j].children[1].classList.add("hide");
+                    }
+                }
+
+            }
+        }
+    </script>
+</html>
