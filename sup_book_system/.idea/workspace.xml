@@ -2,73 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8afe1fb-cf98-4805-b1db-c0fb0f1df24d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/base.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/book_system.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources.local.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/0237a1ef-9477-41a0-a93e-132096240b5d.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/0237a1ef-9477-41a0-a93e-132096240b5d/_metadata_/metadata" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/0237a1ef-9477-41a0-a93e-132096240b5d/_metadata_/metadata.keystream" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/0237a1ef-9477-41a0-a93e-132096240b5d/_metadata_/metadata.keystream.len" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/0237a1ef-9477-41a0-a93e-132096240b5d/_metadata_/metadata.len" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/0237a1ef-9477-41a0-a93e-132096240b5d/_metadata_/metadata.values.at" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/0237a1ef-9477-41a0-a93e-132096240b5d/_metadata_/metadata_i" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/0237a1ef-9477-41a0-a93e-132096240b5d/_metadata_/metadata_i.len" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/0237a1ef-9477-41a0-a93e-132096240b5d/storage.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/b3495d6e-88c8-446a-b655-66a36df87454.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/b3495d6e-88c8-446a-b655-66a36df87454/_metadata_/metadata" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/b3495d6e-88c8-446a-b655-66a36df87454/_metadata_/metadata.keystream" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/b3495d6e-88c8-446a-b655-66a36df87454/_metadata_/metadata.keystream.len" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/b3495d6e-88c8-446a-b655-66a36df87454/_metadata_/metadata.len" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/b3495d6e-88c8-446a-b655-66a36df87454/_metadata_/metadata.values.at" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/b3495d6e-88c8-446a-b655-66a36df87454/_metadata_/metadata_i" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/b3495d6e-88c8-446a-b655-66a36df87454/_metadata_/metadata_i.len" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/dataSources/b3495d6e-88c8-446a-b655-66a36df87454/storage.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/README" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/css/bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/css/bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/css/bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/css/bootstrap-theme.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/css/bootstrap.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/js/jquery-3.1.1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/dist/js/npm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/static/img/zuo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_app/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_system/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_system/settings.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_system/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/book_system/wsgi.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/db.sqlite3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/manage.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/settings.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/templates/addbook.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/templates/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/templates/index.html.bak" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/book_system/wsgi.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/ceshi.html" afterPath="$PROJECT_DIR$/templates/ceshi.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -105,31 +39,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sup_book_system/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sup_book_system/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="12" />
+            <state relative-caret-position="132">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ceshi.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/ceshi.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -138,16 +62,9 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
+            <state relative-caret-position="1518">
               <caret line="46" column="9" lean-forward="false" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
-              <folding>
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -180,7 +97,7 @@
     </dirStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -188,8 +105,9 @@
         <option value="$PROJECT_DIR$/sup_book_system/urls.py" />
         <option value="$PROJECT_DIR$/book_app/views.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/sup_book_system/settings.py" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/templates/ceshi.html" />
       </list>
     </option>
   </component>
@@ -300,7 +218,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -521,6 +439,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a8afe1fb-cf98-4805-b1db-c0fb0f1df24d" name="Default" comment="" />
@@ -542,18 +463,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1371" y="47" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27132195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2771855" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -573,11 +495,89 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LIMIT_HISTORY" value="false" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1518">
+          <caret line="46" column="9" lean-forward="false" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/book_app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ceshi.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sup_book_system/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sup_book_system/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1518">
+          <caret line="46" column="9" lean-forward="false" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/book_app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sup_book_system/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4026">
@@ -614,14 +614,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1287">
           <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -747,16 +740,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
+        <state relative-caret-position="1518">
           <caret line="46" column="9" lean-forward="false" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -764,30 +750,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/sup_book_system/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="12" />
+        <state relative-caret-position="99">
+          <caret line="80" column="16" lean-forward="false" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sup_book_system/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="635">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sup_book_system/settings.py">
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+        <state relative-caret-position="132">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ceshi.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
           <folding />
         </state>
       </provider>
