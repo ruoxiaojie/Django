@@ -19,5 +19,6 @@ from book_app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^index.html/', views.index),
+    url(r'^index/', views.index, name="Reg"),
+    # url(r'^index.html/, views.index),
 ]

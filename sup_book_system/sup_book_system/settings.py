@@ -75,24 +75,24 @@ WSGI_APPLICATION = 'sup_book_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-#
-# DATABASES = {
-#
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'day17',    #你的数据库名称
-#
-#         'USER': 'day17',   #你的数据库用户名
-#
-#         'PASSWORD': '123456', #你的数据库密码
-#
-#         'HOST': '121.42.192.122', #你的数据库主机，留空默认为localhost
-#
-#         'PORT': '3306', #你的数据库端口
-#
-#     }
 
-# }
+DATABASES = {
+
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'day17',    #你的数据库名称
+
+        'USER': 'day17',   #你的数据库用户名
+
+        'PASSWORD': '123456', #你的数据库密码
+
+        'HOST': '121.42.192.122', #你的数据库主机，留空默认为localhost
+
+        'PORT': '3306', #你的数据库端口
+
+    }
+
+}
 
 
 # Password validation
@@ -134,20 +134,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'book_app/static')
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console':{
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django.db.backends': {
-            'handlers': ['console'],
-            'propagate': True,
-            'level':'DEBUG',
-        },
-    }
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console':{
+#             'level':'DEBUG',
+#             'class':'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django.db.backends': {
+#             'handlers': ['console'],
+#             'propagate': True,
+#             'level':'DEBUG',
+#         },
+#     }
+# }
