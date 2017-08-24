@@ -1,0 +1,285 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dragon 客户端 3.0</title>
+    <link rel="icon" href="{% static 'img/mogujie.ico' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/title.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/index.css' %}">
+    <script src="{% static 'bootstrap/js/jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'bootstrap/js/myjs.js' %}"></script>
+</head>
+
+<body style="background-color: white">
+
+<div class="header" style="z-index: 99">
+	<ul class="menu" style="background-color: black">
+		<li><a href="#">运维平台</a></li>
+		<li class="active" style="float: right"><a href="#s2">Dragon</a>
+			<ul class="submenu">
+				<li><a href="#">个人信息</a></li>
+				<li><a href="#">退出</a></li>
+
+			</ul>
+		</li>
+		<li style="float: right"><a href="#">帮助与支持</a>
+			<ul class="submenu">
+				<li><a href="#">帮助文档</a></li>
+				<li><a href="#">API开放平台</a></li>
+				<li><a href="#">技术博客</a></li>
+				<li><a href="#">应用中心</a></li>
+				<li><a href="#">公众号</a></li>
+			</ul>
+		</li>
+		<li style="float: right"><a href="#">工单信息</a>
+            <ul class="submenu">
+				<li><a href="#">公共账号申请</a></li>
+				<li><a href="#">个人账号申请</a></li>
+			</ul>
+        </li>
+
+	</ul>
+</div>
+
+<div class="nav-main" style="margin-top: 58px;width: 160px">
+<div class="nav-box" >
+<div class="nav" >
+  <ul class="nav-ul" >
+  	<li><a href="#" class="home" style="width: 160px"><span style="margin-top: 40px;">书籍管理</span></a></li>
+  	<li><a href="#" class="develop"  style="width: 160px"><span style="margin-top: 40px;">云服务</span></a></li>
+  	<li><a href="#" class="wechat"  style="width: 160px"><span style="margin-top: 40px;">Wonder监控</span></a></li>
+  	<li><a href="#" class="case"  style="width: 160px"><span style="margin-top: 40px;">Redis管理</span></a></li>
+  	<li><a href="#" class="news"  style="width: 160px"><span style="margin-top: 40px;">Memcache管理</span></a></li>
+  	<li><a href="#" class="contact"  style="width: 160px"><span style="margin-top: 40px;">报表</span></a></li>
+  </ul>
+</div>
+<div class="nav-slide" style="width: 150px">
+    <div class="nav-slide-o" >
+            <li><a href="/index/"><span>书籍列表</span></a></li>
+    		<li><a href="/Mybook/add/"><span>添加书籍</span></a></li>
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>添加主机</span></a></li>
+    		<li><a href="#"><span>删除主机</span></a></li>
+    	</ul>
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>添加监控</span></a></li>
+    		<li><a href="#"><span>删除监控</span></a></li>
+    	</ul>
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>添加监控</span></a></li>
+    	</ul>
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>添加监控</span></a></li>
+
+    	</ul>
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>查看报表</span></a></li>
+
+    	</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="container">
+    <div class="row" >
+        <div class="col-md-4 col-md-offset-1" style="padding-left: 8px;">
+         <ol class="breadcrumb" style="background-color: white">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li class="active">Table</li>
+         </ol>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="container" style="background-color: white">
+    <div class="row">
+    <div class="col-md-10 col-md-offset-2">
+            <a href="/Mybook/add/" class="col-md-2" style="margin-left: -15px"><button type="button" class="btn btn-info">新建</button></a>
+            <div class="col-md-5 col-md-offset-5">
+            <form action="/index/" method="post" class="myform">
+                {% csrf_token %}
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." name="search_title">
+              <span class="input-group-btn">
+                <input class="btn btn-default" type="submit" value="Go!">
+              </span>
+            </div>
+            </form>
+          </div>
+
+		<table class="table table-bordered" style="margin-top: 50px;text-align: center">
+			<tr>
+				<th style="text-align: center">序号</th>
+				<th style="text-align: center">作品名称</th>
+				<th style="text-align: center">作者</th>
+				<th style="text-align: center">价格</th>
+				<th style="text-align: center">出版社</th>
+				<th style="text-align: center">日期</th>
+				<th style="text-align: center">操作</th>
+			</tr>
+            {% for obj in book_list %}
+			<tr>
+				<td tag="t1">{{ obj.id }}</td>
+				<td tag="t2">{{ obj.title }}</td>
+				<td tag="t3">{{ obj.author }}</td>
+				<td tag="t4">{{ obj.price }}</td>
+				<td tag="t5">{{ obj.publish }}</td>
+				<td tag="t6">{{ obj.date|date:"Y-m-d" }}</td>
+                <td style="display: none" tag="t7">{{ obj.describe }}</td>
+				<td>
+                    <a href="/Mybook/show/?id={{ obj.id }}"><button type="button" class="btn btn-success">查看</button></a>
+                    <button  book_id="{{ obj.id }}" type="button" class="btn btn-primary mymodify" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">修改</button>
+                    <a href="/Mybook/delete/?id={{ obj.id }}"><button type="button" class="btn btn-danger">删除</button></a></td>
+			</tr>
+            {% endfor %}
+
+		</table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Modify Message</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/Mybook/modify/" method="post" class="myform1">
+            {% csrf_token %}
+          <div class="form-group" style="display: none">
+            <input type="text" class="form-control" id="recipient-name" tag_name="t1" name="id">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">书名:</label>
+            <input type="text" class="form-control" id="recipient-name" tag_name="t2" name="title" Field='string'>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name1" class="control-label">作者:</label>
+            <input type="text" class="form-control" id="recipient-name1" tag_name="t3" name="author" Field='string'>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name2" class="control-label">价格:</label>
+            <input type="text" class="form-control" id="recipient-name2" tag_name="t4" name="price" Field='string' Price='float'>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name3" class="control-label">出版社:</label>
+            <input type="text" class="form-control" id="recipient-name3" tag_name="t5" name="publish" Field='string'>
+          </div>
+           <div class="form-group">
+            <label for="recipient-name4" class="control-label">日期:</label>
+            <input type="text" class="form-control" id="recipient-name4" tag_name="t6" name="date" Field='string' Date="date">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">描述:</label>
+            <textarea class="form-control" id="message-text" tag_name="t7" name="describe" Field='string'></textarea>
+          </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default mover" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary over" value="Commit">
+        </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script>
+    var table_list = [];
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var recipient = button.data('whatever');
+      var modal = $(this);
+    });
+//data-dismiss="modal" 定义隐藏方式
+
+    $('table').on('click','.mymodify',function () {
+        table_list = [];
+        $(this).parent().siblings().each(function () {
+            table_list.push($(this));
+            var $msg = $(this).text();
+            var $t_name = $(this).attr('tag');
+            var over = '[tag_name=' + $t_name + ']';
+            $('.modal-body').find(over).val($msg)
+
+        })
+
+    });
+    $('.mover').click(function () {
+       $('.myform1').find('[role="alert"]').remove();
+       $('.myform1').find('.form-group').removeClass('has-error');
+    });
+    $('.myform1').submit(function () {
+          var $flag = true;
+          $('.myform1').find('[role="alert"]').remove();
+          $('.myform1').find('.form-group').removeClass('has-error');
+          $('.myform1').find('[Field=string]').each(function () {
+            if ($(this).val()){
+                if ($(this).attr('Price')){
+                    var rep = /^\d+\.\d+$|^\d+$/;
+                    if (rep.test($(this).val())){
+                    }
+                    else{
+                        $(this).after($('<div class="alert alert-danger col-md-12 " role="alert" style="line-height: 3px;margin-top: 5px">...</div>'));
+                        var err_msg1 = $(this).prev().text();
+                        var res_err_msg1 = err_msg1.replace(':','') + '必须为数字!';
+                        $(this).next().text(res_err_msg1).parent().addClass('has-error');
+                        $flag = false
+                    }
+                }else if($(this).attr('Date')){
+                    var rep1 = /^\d{4}-\d{2}-\d{2}$/;
+                    if (! rep1.test($(this).val())){
+                        $(this).after($('<div class="alert alert-danger col-md-12 " role="alert" style="line-height: 3px;margin-top: 5px">...</div>'));
+                        var err_msg2 = $(this).prev().text();
+                        var res_err_msg2 = err_msg2.replace(':','') + '必须为YYYY-MM-DD!';
+                        $(this).next().text(res_err_msg2).parent().addClass('has-error');
+                        $flag = false
+                    }
+                }
+            }else{
+                $(this).after($('<div class="alert alert-danger col-md-12 " role="alert" style="line-height: 3px;margin-top: 5px">...</div>'));
+                var err_msg = $(this).prev().text();
+                var res_err_msg = err_msg.replace(':','') + '不能为空!';
+                $(this).next().text(res_err_msg).parent().addClass('has-error');
+                $flag = false
+
+            }
+        });
+            if ($flag){
+                $.each(table_list,function () {
+                    var $msg1 = $(this).text();
+                    var $t_name1 = $(this).attr('tag');
+                    var over1 = '[tag_name=' + $t_name1 + ']';
+                     if (String($('.modal-body').find(over1).val()) == $msg1){
+                        if (over1 != '[tag_name=t1]'){
+                            $('.modal-body').find(over1).removeAttr('name');
+                         }
+                     }
+                });
+            }
+          return $flag
+    })
+</script>
+</body>
+</html>

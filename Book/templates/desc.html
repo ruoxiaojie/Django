@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dragon 客户端 3.0</title>
+    <link rel="icon" href="{% static 'img/mogujie.ico' %}">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+    <script src="{% static "bootstrap/js/jquery.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+</head>
+
+<body>
+        {% for obj in book_desc %}
+        <div class="panel panel-primary" style="margin-top: 20px">
+            <div class="panel-heading">
+                 编号：
+            </div>
+            <div class="panel-body">{{ obj.id }}</div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                 书名：
+            </div>
+            <div class="panel-body">{{ obj.title }}</div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                 作者：
+            </div>
+            <div class="panel-body">{{ obj.author }}</div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                 价格：
+            </div>
+            <div class="panel-body">{{ obj.price }}</div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                 出版社：
+            </div>
+            <div class="panel-body">{{ obj.publish }}</div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                 日期：
+            </div>
+            <div class="panel-body">{{ obj.date|date:"Y-m-d" }}</div>
+        </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                 描述：
+            </div>
+            <div class="panel-body">{{ obj.describe }}</div>
+        </div>
+        {% endfor %}
+
+        <a href="/index/" style="float: right"><button type="button" class="btn btn-success">返回首页</button></a>
+
+
+</body>
+
+<script>
+
+</script>
+</html>
