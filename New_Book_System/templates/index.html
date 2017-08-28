@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图书后台管理系统</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*由于使用的栅格系统，实际上wrap包裹层设置居中的效果没有得到很好的体现*/
+        .wrap {
+            margin: 0 auto;
+        }
+    </style>
+
+    <link href="{% static "css/index.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "js/bootstrap/css/bootstrap.css" %}">
+    <script src="{% static "js/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "js/bootstrap/js/bootstrap.min.js" %}"></script>
+
+</head>
+<body style="background: #708090;">
+{#我通过style样式设置距离上面的高度#}
+<div class="wrap" style="margin-top: 7%">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4 divhead">
+                <h3 class="text-center" id="title">图书管理系统</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="content col-md-offset-4 col-md-4">
+                <form action="/login/" method="post">
+                    <!--input-group方便加入前缀图标-->
+                    <div class="mpadding input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="username" placeholder="用户名" autofocus>
+                    </div>
+                    <div class="mpadding input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="密 码" name="password">
+                    </div>
+                    <!-- btn-block使控件填满父窗体 -->
+                    <input type="submit" class="mpadding btn btn-primary btn-block" value="登录">
+                </form>
+                <p class="small text-right" style="margin-top: 10px;">忘记密码？请联系制作团队</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

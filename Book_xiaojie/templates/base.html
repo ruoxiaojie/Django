@@ -1,11 +1,155 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/title.css' %}">
+{#    #标题图标#}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/index.css' %}">
+    <script src="{% static 'bootstrap/js/jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/myjs.js' %}"></script>
 </head>
-<body>
-<a href="">dfwfdsfdrwgergrehr</a>
+<body style="background-color: white">
+{#top#}
+<div class="header" style="z-index: 99">
+    <ul class="menu" style="background-color: black">
+        <li><a href="#">运维平台</a></li>
+        <li class="active" style="float: right"><a href="#s2">settings</a>
+            <ul class="submenu">
+                <li><a href="#">个人信息</a></li>
+                <li><a href="#">退出</a></li>
+            </ul>
+        </li>
+
+        <li style="float: right"><a href="#">帮助与支持</a>
+            <ul class="submenu">
+                <li><a href="#">帮助文档</a></li>
+                <li><a href="#">API开放平台</a></li>
+                <li><a href="#">技术博客</a></li>
+                <li><a href="#">应用中心</a></li>
+                <li><a href="#">公众号</a></li>
+            </ul>
+        </li>
+        <li style="float: right"><a href="#">工单信息</a>
+            <ul class="submenu">
+                <li><a href="#">公共账号申请</a></li>
+                <li><a href="#">个人账号申请</a></li>
+            </ul>
+        </li>
+	</ul>
+
+</div>
+{#top#}
+
+{#left#}
+<div class="nav-main" style="margin-top: 58px;width: 160px">
+    <div class="nav-box">
+        <div class="nav">
+            <ul>
+              <li><a href="#" class="home" style="width: 160px"><span style="margin-top: 40px;">书籍管理</span></a></li>
+{#              <li><a href="#" class="develop"  style="width: 160px"><span style="margin-top: 40px;">云服务</span></a></li>#}
+{#              <li><a href="#" class="wechat"  style="width: 160px"><span style="margin-top: 40px;">Wonder监控</span></a></li>#}
+{#              <li><a href="#" class="case"  style="width: 160px"><span style="margin-top: 40px;">Redis管理</span></a></li>#}
+{#              <li><a href="#" class="news"  style="width: 160px"><span style="margin-top: 40px;">Memcache管理</span></a></li>#}
+{#              <li><a href="#" class="contact"  style="width: 160px"><span style="margin-top: 40px;">报表</span></a></li>#}
+           </ul>
+        </div>
+<div class="nav-slide" style="width: 150px">
+    <div class="nav-slide-o" >
+            <li><a href="/index/"><span>书籍列表</span></a></li>
+{#    		<li><a href="/Mybook/add/"><span>添加书籍</span></a></li>#}
+    </div>
+
+    	</ul>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+{#left#}
 
 </body>
+<script>
+    var table_list = [];
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var recipient = button.data('whatever');
+      var modal = $(this);
+    });
+//data-dismiss="modal" 定义隐藏方式
+
+    $('table').on('click','.mymodify',function () {
+        table_list = [];
+        $(this).parent().siblings().each(function () {
+            table_list.push($(this));
+            var $msg = $(this).text();
+            var $t_name = $(this).attr('tag');
+            var over = '[tag_name=' + $t_name + ']';
+            $('.modal-body').find(over).val($msg)
+
+        })
+
+    });
+    $('.mover').click(function () {
+       $('.myform1').find('[role="alert"]').remove();
+       $('.myform1').find('.form-group').removeClass('has-error');
+    });
+    $('.myform1').submit(function () {
+          var $flag = true;
+          $('.myform1').find('[role="alert"]').remove();
+          $('.myform1').find('.form-group').removeClass('has-error');
+          $('.myform1').find('[Field=string]').each(function () {
+            if ($(this).val()){
+                if ($(this).attr('Price')){
+                    var rep = /^\d+\.\d+$|^\d+$/;
+                    if (rep.test($(this).val())){
+                    }
+                    else{
+                        $(this).after($('<div class="alert alert-danger col-md-12 " role="alert" style="line-height: 3px;margin-top: 5px">...</div>'));
+                        var err_msg1 = $(this).prev().text();
+                        var res_err_msg1 = err_msg1.replace(':','') + '必须为数字!';
+                        $(this).next().text(res_err_msg1).parent().addClass('has-error');
+                        $flag = false
+                    }
+                }else if($(this).attr('Date')){
+                    var rep1 = /^\d{4}-\d{2}-\d{2}$/;
+                    if (! rep1.test($(this).val())){
+                        $(this).after($('<div class="alert alert-danger col-md-12 " role="alert" style="line-height: 3px;margin-top: 5px">...</div>'));
+                        var err_msg2 = $(this).prev().text();
+                        var res_err_msg2 = err_msg2.replace(':','') + '必须为YYYY-MM-DD!';
+                        $(this).next().text(res_err_msg2).parent().addClass('has-error');
+                        $flag = false
+                    }
+                }
+            }else{
+                $(this).after($('<div class="alert alert-danger col-md-12 " role="alert" style="line-height: 3px;margin-top: 5px">...</div>'));
+                var err_msg = $(this).prev().text();
+                var res_err_msg = err_msg.replace(':','') + '不能为空!';
+                $(this).next().text(res_err_msg).parent().addClass('has-error');
+                $flag = false
+
+            }
+        });
+            if ($flag){
+                $.each(table_list,function () {
+                    var $msg1 = $(this).text();
+                    var $t_name1 = $(this).attr('tag');
+                    var over1 = '[tag_name=' + $t_name1 + ']';
+                     if (String($('.modal-body').find(over1).val()) == $msg1){
+                        if (over1 != '[tag_name=t1]'){
+                            $('.modal-body').find(over1).removeAttr('name');
+                         }
+                     }
+                });
+            }
+          return $flag
+    })
+</script>
 </html>

@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="http://img.my.csdn.net/uploads/201708/16/1502851466_1496.jpg-thumb.jpg">
+    <title>图书管理系统</title>
+    <style>
+        .header {
+            width: 100%;
+            height: 60px;
+            background-color: black;
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: white;
+        }
+
+        .left {
+            width: 170px;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            bottom: 0;
+            background-color: firebrick;
+        }
+
+        .right {
+            position: absolute;
+            top: 60px;
+            bottom: 0;
+            left: 200px;
+            right: 0;
+            overflow: scroll;
+
+        }
+
+        #addline {
+            margin-top: 120%;
+            margin-left: 60%;
+        }
+
+        .outer {
+            margin: 7% auto;
+            width: 90%;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="{% static "js/bootstrap/css/bootstrap.css" %}">
+    <script src="{% static "js/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "js/bootstrap/js/bootstrap.min.js" %}"></script>
+
+</head>
+
+<body>
+<div class="header">
+    <div style="color:white;font-family: 楷体;font-size: 27px;margin-top: 15px">
+        图书管理系统,给你最佳的用户体验.
+    </div>
+</div>
+<div class="box">
+
+    <div class="left">
+        <a href="/addBook/" style="float:left">
+            <button type="button" class="btn btn-default btn-lg active" id="addline">添加</button>
+        </a>
+    </div>
+
+    <div class="right">
+        <div class="outer">
+            <div class="input-group" style="width: 300px;margin-left: 70.8%;margin-bottom: 30px">
+                <input type="text" class="form-control input-lg" placeholder="请输入图书类别" onkeydown="onKeyDown(event)">
+                <span class="input-group-addon btn btn-primary" ID="search">搜索</span>
+            </div>
+            <table class="table table-bordered table-striped table-hover">
+                <tr>
+                    <th>图书编号</th>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>出版日期</th>
+                    <th>图书价格</th>
+                    <th>出版社</th>
+                    <th>操作</th>
+                </tr>
+                {% for book in all_book_list %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.publication_date }}</td>
+                        <td>{{ book.price }}</td>
+                        <td>{{ book.pub.name }}</td>
+                        <td>
+                            <a href="/delete/?id={{ book.id }}">
+                                <button type="button" class="btn btn-danger btn-group-xs">删除</button>
+                            </a>
+                            <button type="button" name="edit" class="btn btn-info btn-group-xs" data-toggle="modal"
+                                    data-target="#myModal">
+                                编辑
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div>
+            <nav aria-label="...">
+                <ul class="pager">
+                    {#模板语言中方法不用加括号#}
+                    {{ page_info.page_str|safe }}
+                </ul>
+            </nav>
+        </div>
+        <!-- 模态框（Modal） -->
+        <div class="modal fade models" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="col-md-7">
+                        <form action="/edit/" method="post">
+                            <div class="form-group">
+                                <label for="bookID">图书编号</label>
+                                <input type="text" readonly="readonly" class="form-control" id="bookID" name="bookID">
+                                </input>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">书名</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                                </input>
+                            </div>
+                            <div class="form-group">
+                                <label for="author">作者</label>
+                                <input type="text" class="form-control" id="author" name="author"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="publish">出版日期</label>
+                                <input type="text" class="form-control" id="publish" name="publish"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">图书价格</label>
+                                <input type="text" class="form-control" id="price" name="price"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">出版社</label>
+                                <select id="category" name="category" class="form-control">
+                                    <option>首都师范大学出版社</option>
+                                    <option>吉林摄影出版社</option>
+                                    <option>辽宁画报出版社</option>
+                                    <option>西安交通大学出版社</option>
+                                    <option>新疆人民出版社</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn-info btn-lg">提交</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    {#在这里面给按钮增加相应的事件处理机制#}
+    $(function () {
+        $('#myModal').modal('hide')
+    });
+    //编写编辑操作
+    var aa = []
+    $("tbody").on("click", "button[name=edit]", function () {
+        //将当前对应行的内容复制给填选框,编辑简单
+        $(this).parent().parent().find("td").each(function (i, ele) {
+            aa.push($(ele).text())
+        })
+        {#运行结果:Array[ "8801", "普通上线", "127.10.0.1", "3306", "Oracle", "2017-08-13", "…" ]#}
+        $("input[name=bookID]").val(aa[0])
+        $("input[name=title]").val(aa[1])
+        $("input[name=author]").val(aa[2])
+        $("input[name=publish]").val(aa[3])
+        $("input[name=price]").val(aa[4])
+        {# 将当前出版社的名字赋值给publisher,对于复选框的处理稍微复杂一点#}
+        publisher_name = aa[5]
+        pub_list = $('select[id=category]')[0].innerText.trim().split('\n')
+        var res = pub_list.map(function (item, index, input) {
+            if (item.trim() == publisher_name.trim())
+            {
+                $('select[id=category]')[0].children[index].setAttribute("selected",true)
+            }
+        })
+        $("input[name=category]").val(aa[5])
+    })
+    $("#search").on("click", function (event) {
+        var e = event || window.event
+        search()
+    })
+    {#添加回车搜索事件#}
+    function onKeyDown(event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13) {
+            search()
+        }
+    }
+    function search() {
+        category = $("input[placeholder=请输入图书类别]").val()
+        if (category == "") {
+            window.open('http://127.0.0.1:2020/back/', '_self')
+            return;
+        }
+        link_info = "search/" + category + "/"
+        link = "http://127.0.0.1:8000/" + link_info
+        window.open(link, '_self')
+    }
+</script>
+</body>
+
+</html>
