@@ -8,6 +8,12 @@ def index(request):
     return render(request,"index.html")
 
 def sendAjax(request):
-    d={'name':"xiaojie"}
+    username=request.POST.get("username")
+    password=request.POST.get("password")
+    dic={"flag":False}
+    if username=="liu" and password=="1234":
+        dic={"flag":True}
+    return HttpResponse(json.dumps(dic))
 
-    return HttpResponse(json.dumps(d))
+    # d={'name':"xiaojie"}
+    # return HttpResponse(json.dumps(d))

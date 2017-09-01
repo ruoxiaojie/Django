@@ -11,19 +11,32 @@
 
 <h1>index</h1>
 <form action="">
-    <p>用户<input type="text"></p>
-    <p>密码<input type="password"></p>
+    <p>用户<input type="text" id="user"></p>
+    <p>密码<input type="password" id="pwd"></p>
 </form>
 <button class="sendAjax">sendAjax</button>
 
 <script>
     $(".sendAjax").click(function () {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
         $.ajax({
             url:"/sendAjax/",
+            type:"POST",
+            data:{"username":$("#user").val(),"password":$("#pwd").val()},
             success:function (data) {
-                alert(data)
-                alert(typeof data)
-                
+{#                alert(data)#}
+{#                alert(typeof data)#}
+{#                dic=JSON.parse(data);#}
+{#                alert(dic["name"])#}
+                dic=JSON.parse(data);
+                if (dic["flag"]){
+                    alert("登入成功")
+                }
+                else {
+                    alert("登入失败")
+                }
             }
         })
     })

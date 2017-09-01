@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+        <script src="{% static "js/jquery-3.1.1.js" %}"></script>
+         <script src="{% static "js/bootstrap.js" %}"></script>
+    <style>
+        .container{
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3">
+            <h4>分页</h4>
+            <ul>
+                {% for book in book_list %}
+                  <li>{{ book.title }}&nbsp;&nbsp;{{ book.price }}</li>
+                {% endfor %}
+            </ul>
+            <nav aria-label="Page navigation">
+                  <ul class="pagination">
+                      {% if book_list.has_previous %}
+                      <li><a href="/index/?page={{ book_list.previous_page_number }}">上一页</a></li>
+                       {% else %}
+                          <li class="disabled"><a href="#">上一页</a></li>
+                      {% endif %}
+
+                      {% for num in p.page_range %}
+
+                          <li><a href="/index/?page={{ num }}">{{ num }}</a></li>
+
+                      {% endfor %}
+
+
+                       {% if book_list.has_next %}
+                       <li><a href="#">下一页</a></li>
+                       {% else %}
+                          <li class="disabled"><a href="/index/?page={{ book_list.next_page_number }}">下一页</a></li>
+                      {% endif %}
+
+
+  </ul>
+</nav>
+
+
+</div>
+</div>
+</div>
+</body>
+</html>
