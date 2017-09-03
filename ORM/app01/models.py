@@ -18,3 +18,4 @@ class publish(models.Model):
 
 class Author(models.Model):
     name=models.CharField(max_length=32)
+

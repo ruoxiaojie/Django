@@ -37,3 +37,13 @@ def logout(request):
     request.session.clear()
     return redirect('/login/')
 
+
+
+
+def csrf(request):
+
+    return render(request,"csrf.html")
+
+
+
+

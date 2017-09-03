@@ -25,7 +25,7 @@ SECRET_KEY = 'xeg$66_*y_7e@j2md8^q4ie1)cx%hwu%-)w^vy8_%sf$f5476q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.2.103']
+ALLOWED_HOSTS = [ ]
 
 
 # Application definition
@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -120,6 +120,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_DIR = {
+    os.path.join(BASE_DIR,'static')
+}
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 引擎（默认）
 

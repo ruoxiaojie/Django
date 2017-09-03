@@ -42,10 +42,11 @@ def add(request):
 def query(request):
     # ret=Book.objects.values("title","price")
     ret=Book.objects.filter(nid__gt=2).values("title","price")
-
+    
 
     print(ret)
     return HttpResponse("ok")
+
 
 
 

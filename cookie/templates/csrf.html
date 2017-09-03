@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/csrf" method="POST">
+    {% csrf_token %}
+    <input type="text">
+    <input type="submit">
+    <a onclick="ajaxSubmmit();">ajax提交</a>
+</form>
+
+<script src="/static/jquery-3.1.1.js"></script>
+<script>
+    function ajaxSubmmit() {
+        $.ajax({
+            url:"/csrf",
+            type:'POST',
+            data:{'csrfmiddlewaretoken':'{{ csrf_token }}'},
+            success:function (arg) {
+                console.log(arg)
+            }
+        })
+    }
+
+</script>
+
+
+
+
+</body>
+</html>
