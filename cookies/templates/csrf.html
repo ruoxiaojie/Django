@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form id="f1" action="/csrf" method="post">
+    {% csrf_token %}
+{#    {{ csrf_token }}    #隐藏的csrf_token的值#}
+    <input type="text" name="'from" />
+    <input type="text" name="to" />
+    <input type="text" name="money" />
+    <input type="submit" value="转账">
+    <a onclick="ajaxsumbit();">Ajax提交</a>
+</form>
+<script src="/static/jquery.js"></script>
+<script src="/static/jquery.cookie.js"></script>
+<script>
+    function ajaxsumbit() {
+        $.ajax({
+            url:"/csrf",
+            type:'POST',
+{#            data:{'k1':'v1','csrfmiddlewaretoken':$('input[name="csrfmiddlewaretoken"]').val()}, 可以写在模版中#}
+{#            data:{'k1':'v1','csrfmiddlewaretoken':'{{ csrf_token }}'},  {# 不能写都js文件去 #}
+
+            data:{'k1':'v1'},
+            headers:{"X-CSRFToken":$.cookie('csrftoken')},     {# 请求头   导入jquery.cookie.js 必须是这个名字X-CSRFToken #}
+            success:function (arg) {
+                console.log(arg)
+            }
+        })
+    }
+</script>
+
+
+</body>
+</html>
