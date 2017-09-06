@@ -24,6 +24,5 @@ urlpatterns = [
     url(r'^order$', views.order),
     url(r'^logout$', views.logout),
     url(r'^csrf$', views.csrf),
-    url(r'^csrf$', views.csrf),
     url(r'^test$', views.test),
 ]
