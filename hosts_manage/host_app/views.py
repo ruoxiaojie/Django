@@ -8,12 +8,28 @@ from host_app import models
 
 
 def login(request):
+    if request.method == 'GET':
+        return render(request,"login.html")
+    else:
+        user=request.POST.get('user')
+        pwd=request.POST.get('pwd')
+
+        pwd=my_md5(pwd)
+        obj=models.User.objects.filter(username=user,password=pwd).first()
+
+        if not obj:
+            return render(request, 'login.html', {'msg': '用户名或密码错误'})
+        else:
+            request.session['uuuuuu'] = user
+            return redirect('/index.html')
 
 
-    return render(request,"login.html")
+
+
+
 
 def index(request):
-    pass
+    return render(request,'index.html')
 
 def logout(request):
 
