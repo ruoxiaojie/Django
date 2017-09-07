@@ -3,8 +3,19 @@ from utils.md5 import my_md5
 from host_app import models
 # Create your views here.
 
+def auth(func):
+    def inner(request,*args,**kwargs):
+        url=request.path ##第一次url
+        global url
+        ck=request.session.get('uuuuuu')
+        if not ck:
+            return redirect('/login.html')
+        return func(request,*args,**kwargs)
+    return inner
 
-
+@auth
+def user_change(request):
+    return HttpResponse("OK")
 
 
 def login(request):
@@ -13,26 +24,24 @@ def login(request):
     else:
         user=request.POST.get('user')
         pwd=request.POST.get('pwd')
-
         pwd=my_md5(pwd)
         obj=models.User.objects.filter(username=user,password=pwd).first()
-
         if not obj:
             return render(request, 'login.html', {'msg': '用户名或密码错误'})
         else:
             request.session['uuuuuu'] = user
-            return redirect('/index.html')
+            return redirect(url) #全局url 返回第一次访问url
 
 
 
 
 
-
+@auth
 def index(request):
     return render(request,'index.html')
 
 def logout(request):
-
+    request.session.clear()
     return redirect('/login.html')
 
 
@@ -52,6 +61,8 @@ def name(request):
     '''
 
 from utils.page import Page
+
+@auth
 def user_list(request):
 
     current_page = request.GET.get('page') #当前页
@@ -65,6 +76,19 @@ def user_list(request):
     page_str = page_obj.page_html()
 
     return render(request,'user.html',{'user_list':user_list,'page_str':page_str})
+
+
+
+
+
+
+
+###批量修改密码
+# @auth
+# def user_change(request):
+#     return HttpResponse("OK")
+    # models.User.objects.all().update(password='e10adc3949ba59abbe56e057f20f883e') #修改密码
+
 
 
 
