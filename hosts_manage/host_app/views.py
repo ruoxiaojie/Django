@@ -35,11 +35,6 @@ def login(request):
 
 
 
-
-@auth
-def index(request):
-    return render(request,'index.html')
-
 def logout(request):
     request.session.clear()
     return redirect('/login.html')
@@ -49,19 +44,19 @@ def logout(request):
 
 
 
-'''
+
 #往数据库批量添加数据
-def name(request):
-    for i in range(1,303):
-        username="xiaojie{}".format(i)
-        pwd=123456
-        password=my_md5('pwd')
-        models.User.objects.create(username=username,password=password)
-    return HttpResponse('创建成功')
-    '''
+# def add(request):
+#     for i in range(1,303):
+#         username="xiaojie{}".format(i)
+#         email="{}@qq.com".format(i)
+#         pwd=123456
+#         password=my_md5(str(pwd))
+#         models.User.objects.create(username=username,email=email,password=password)
+#     return HttpResponse('创建成功')
+
 
 from utils.page import Page
-
 @auth
 def user_list(request):
 
@@ -79,6 +74,21 @@ def user_list(request):
 
 
 
+@auth
+def index(request):
+
+    current_page = request.GET.get('page') #当前页
+    try:
+        current_page  = int(current_page)
+    except Exception as e:
+        current_page = int(1)
+    all_count = models.Host.objects.all().count()     #数据总条数
+    page_obj = Page(current_page,all_count,request.path_info) #requ request.path_info当前URL
+    host_list = models.Host.objects.all()[page_obj.start:page_obj.end]
+    page_str = page_obj.page_html()
+
+    return render(request,'index.html',{'host_list':host_list,'page_str':page_str})
+
 
 
 
@@ -89,7 +99,11 @@ def user_list(request):
 #     return HttpResponse("OK")
     # models.User.objects.all().update(password='e10adc3949ba59abbe56e057f20f883e') #修改密码
 
-
+# def add(request):
+#     ip=192.168.1.1
+#     port=22
+#     models.User.objects.all().update(port=port)
+#     return HttpResponse("OK")
 
 
 

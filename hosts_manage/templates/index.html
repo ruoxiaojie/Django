@@ -3,11 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+    .pagination1 a{
+        display: inline-block;
+        padding: 2px 1px;
+        background-color: #1926ff;
+        margin: 3px;
+        color: white;
+    }
+        .pagination1 a.active{background-color: green}
+    </style>
 </head>
 <body>
-<h1>欢迎登入</h1>
+<h2>主机列表</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>IP</th>
+            <th>port</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for host in host_list %}
+            <tr>
+                <td>{{ host.id }}</td>
+                <td>{{ host.ip }}</td>
+                <td>&nbsp;{{ host.port }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
-<h2><a href="/logout">注销</a></h2>
+<div class="pagination1">
+    {{ page_str |safe }}
+</div>
+
+
 
 </body>
 </html>
