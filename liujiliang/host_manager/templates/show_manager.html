@@ -1,0 +1,25 @@
+{% extends 'src.html' %}
+{% block user %}{{ user }}{% endblock %}
+{% block action %}Show_Manager{% endblock %}
+{% block content %}
+    <div class="col-md-10 col-md-offset-2">
+		<table class="table table-bordered" style="margin-top: 50px;text-align: center">
+			<tr>
+				<th style="text-align: center">序号</th>
+				<th style="text-align: center">管理员名字</th>
+				<th style="text-align: center">管理员邮箱</th>
+			</tr>
+            {% for obj in service_obj %}
+			<tr>
+				<td tag="t1">{{ obj.id }}</td>
+				<td tag="t2">{{ obj.username }}</td>
+				<td tag="t3">{{ obj.email }}</td>
+
+			</tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-10 col-md-offset-2">
+        <a href="/index.html" style="float: right"><button type="button" class="btn btn-success">返回首页</button></a>
+    </div>
+{% endblock %}

@@ -1,0 +1,319 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dragon 客户端 6.0</title>
+    <link rel="icon" href="{% static 'img/mogujie.ico' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/title.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/index.css' %}">
+    <script src="{% static 'bootstrap/js/jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/myjs.js' %}"></script>
+</head>
+
+<body style="background-color: white">
+
+<div class="header" style="z-index: 99 ;position: fixed">
+	<ul class="menu" style="background-color: black">
+		<li><a href="#">运维平台</a></li>
+		<li class="active" style="float: right"><a href="#s2">{{ request.session.user }}</a>
+			<ul class="submenu">
+				<li><a href="#">个人信息</a></li>
+				<li><a href="/logout.html">退出</a></li>
+
+			</ul>
+		</li>
+		<li style="float: right"><a href="#">帮助与支持</a>
+			<ul class="submenu">
+				<li><a href="#">帮助文档</a></li>
+				<li><a href="#">API开放平台</a></li>
+				<li><a href="#">技术博客</a></li>
+				<li><a href="#">应用中心</a></li>
+				<li><a href="#">公众号</a></li>
+			</ul>
+		</li>
+		<li style="float: right"><a href="#">工单信息</a>
+            <ul class="submenu">
+				<li><a href="#">公共账号申请</a></li>
+				<li><a href="#">个人账号申请</a></li>
+			</ul>
+        </li>
+
+	</ul>
+</div>
+
+<div class="nav-main" style="margin-top: 58px;width: 160px">
+<div class="nav-box" >
+<div class="nav" >
+  <ul class="nav-ul" >
+  	<li><a href="#" class="home" style="width: 160px"><span style="margin-top: 40px;">主机管理</span></a></li>
+  	<li><a href="#" class="develop"  style="width: 160px"><span style="margin-top: 40px;">云服务</span></a></li>
+  	<li><a href="#" class="wechat"  style="width: 160px"><span style="margin-top: 40px;">Wonder监控</span></a></li>
+  	<li><a href="#" class="case"  style="width: 160px"><span style="margin-top: 40px;">Redis管理</span></a></li>
+  	<li><a href="#" class="news"  style="width: 160px"><span style="margin-top: 40px;">Memcache管理</span></a></li>
+  	<li><a href="#" class="contact"  style="width: 160px"><span style="margin-top: 40px;">报表</span></a></li>
+  </ul>
+</div>
+<div class="nav-slide" style="width: 150px">
+    <div class="nav-slide-o" >
+            <li><a href="/index.html"><span>主机列表</span></a></li>
+    		<li><a href="/show/add"><span>添加主机</span></a></li>
+            <li><a href="/show/service"><span>添加业务线</span></a></li>
+
+
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>添加主机</span></a></li>
+    		<li><a href="#"><span>删除主机</span></a></li>
+    	</ul>
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>添加监控</span></a></li>
+    		<li><a href="#"><span>删除监控</span></a></li>
+    	</ul>
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>添加监控</span></a></li>
+    	</ul>
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>添加监控</span></a></li>
+
+    	</ul>
+    </div>
+    <div class="nav-slide-o">
+    	<ul>
+    		<li><a href="#"><span>查看报表</span></a></li>
+
+    	</ul>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="container">
+    <div class="row" >
+        <div class="col-md-4 col-md-offset-1" style="padding-left: 8px;">
+         <ol class="breadcrumb" style="background-color: white">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li class="active">Table</li>
+         </ol>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="container" style="background-color: white;margin-top: 30px">
+    <div class="row">
+    <div class="col-md-10 col-md-offset-2">
+            <a href="/show/add" class="col-md-2" style="margin-left: -15px"><button type="button" class="btn btn-info">新建</button></a>
+            <div class="col-md-5 col-md-offset-5">
+            <form action="/show/search" method="post" class="myform">
+                {% csrf_token %}
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." name="search_title">
+              <span class="input-group-btn">
+                <input class="btn btn-default" type="submit" value="Go!">
+              </span>
+            </div>
+            </form>
+          </div>
+
+		<table id='mytable' class="table table-bordered table-hover" style="margin-top: 50px;text-align: center">
+			<tr>
+				<th style="text-align: center">序号</th>
+				<th style="text-align: center">主机名</th>
+				<th style="text-align: center">ip</th>
+				<th style="text-align: center">端口</th>
+				<th style="text-align: center">业务线</th>
+				<th style="text-align: center">操作</th>
+			</tr>
+            {% for obj in host_list %}
+			<tr>
+				<td tag="t1">{{ obj.id }}</td>
+				<td tag="t2">{{ obj.name }}</td>
+				<td tag="t3">{{ obj.ip }}</td>
+				<td tag="t4">{{ obj.port }}</td>
+				<td tag="t5"><a href="/show/show_manager/{{ obj.service_line.id }}">{{ obj.service_line.name }}</a></td>
+
+				<td>
+                    <button  host_id="{{ obj.id }}" type="button" class="btn btn-primary mymodify" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">修改</button>
+                    <button type="button" class="btn btn-danger">删除</button>
+                </td>
+			</tr>
+            {% endfor %}
+		</table>
+        <div aria-label="Page navigation" style="text-align: center">
+          <ul class="pagination">
+          <li><a href="/index.html/?page=1"><span>首页</span></a></li>
+            <li>
+                {% if host_list.has_previous %}
+                    <a href="/index.html/?page={{host_list.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">上一页</span>
+                  </a>
+                {% else %}
+                     <li class="previous disabled"><a href="#">上一页</a></li>
+                {% endif %}
+            </li>
+               {% for num in p_range %}
+                         {% if num == currentPage %}
+                           <li class="item active"><a href="/index.html/?page={{ num }}">{{ num }}</a></li>
+                         {% else %}
+                           <li class="item"><a href="/index.html/?page={{ num }}">{{ num }}</a></li>
+                         {% endif %}
+                     {% endfor %}
+                <li>
+              {% if host_list.has_next %}
+                  <a href="/index.html/?page={{host_list.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">下一页</span>
+                  </a>
+              {% else %}
+                    <li class="next disabled"><a href="#">下一页</a></li>
+              {% endif %}
+            </li>
+            <li><a href="/index.html/?page={{ total_num }}"><span>尾页</span></a></li>
+            <li><span>总计: {{ currentPage }}/{{ total_num }} 页</span></li>
+          </ul>
+
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Modify Message</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/Mybook/modify/" method="post" class="myform1">
+            {% csrf_token %}
+          <div class="form-group" style="display: none">
+            <input type="text" class="form-control" id="myid" tag_name="t1" name="id">
+          </div>
+          <div class="form-group">
+            <label for="hostname" class="control-label">主机名:</label>
+            <input type="text" class="form-control" id="hostname" tag_name="t2" >
+          </div>
+          <div class="form-group">
+            <label for="ip" class="control-label">主机ip:</label>
+            <input type="text" class="form-control" id="ip" tag_name="t3" >
+          </div>
+          <div class="form-group">
+            <label for="port" class="control-label">主机端口:</label>
+            <input type="text" class="form-control" id="port" tag_name="t4" >
+          </div>
+          <div class="form-group">
+            <label for="recipient-name3" class="control-label">业务线:</label>
+              <select name="service_name" class="form-control"   tag_name="t5" id="service">
+                {% for item in service_list %}
+                <option value={{ item.id }} >{{ item.name }}</option>
+                 {% endfor %}
+              </select>
+          </div>
+        </form>
+        <div class="modal-footer">
+         <button type="button" class="btn btn-default mover" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary over" value="Commit" id="mycommit">Commit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/static/bootstrap/js/jquery.cookie.js"></script>
+<script>
+    var table_list = [];
+    $('table').on('click','.mymodify',function () {
+        table_list1 = $(this).parent().siblings()
+    });
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        table_list = [];
+        $.each(table_list1,function () {
+            table_list.push($(this));
+            var $msg = $(this).text();
+            var $t_name = $(this).attr('tag');
+            var over = '[tag_name=' + $t_name + ']';
+            if($t_name == 't5'){
+                var myselect_list = document.getElementById('service').children;
+                console.log(myselect_list);
+                for (i=0;i<myselect_list.length;i++){
+                    if (myselect_list[i].innerText  == $msg){
+                        myselect_list[i].selected = true
+                    }
+                }
+            }
+            else{
+              $('.modal-body').find(over).val($msg)
+            }
+        });
+    });
+
+    $('#exampleModal').on('hide.bs.modal', function (event) {
+       $('.myform1').find('[role="alert"]').remove();
+        var mylist = document.getElementsByTagName('option');
+        for (i=0;i<mylist.length;i++){
+            mylist[i].selected=false;
+        }
+    });
+
+
+    $('#mycommit').click(function () {
+        $('.myform1').find('[role="alert"]').remove();
+        console.log(table_list);
+        $.ajax({
+            url: '/show/modify',
+            type: 'POST',
+            data: {"id":$('#myid').val(),"hostname":$('#hostname').val(),"port":$('#port').val(),"ip":$('#ip').val(),"service":$('#service').val()},
+            dataType: 'JSON',
+            traditional: true,
+            headers: {"X-CSRFToken": $.cookie('csrftoken')},
+            success: function (data) {
+                if (data.status){
+                    console.log(data);
+                    table_list[1].text(data.data['name']);
+                    table_list[2].text(data.data['ip']);
+                    table_list[3].text(data.data['port']);
+                    table_list[4].html('<a href="/show/show_manager/' + data.data['service_line_id'] + '">' + data.data['service_line__name'] + '</a>' );
+                    $('#exampleModal').modal('toggle');
+                }else{
+                    $.each(data.error,function (k,v) {
+                        var $error_msg =  '<div class="alert alert-danger col-md-12 " role="alert" style="line-height: 3px;margin-top: 5px">' + v[0] + '</div>';
+                        $('#' + k).after($error_msg)
+                    })
+                }
+            }
+        })
+    });
+
+    //通过ajax进行删除
+    $('#mytable').on('click','.btn-danger',function () {
+        var my_obj = $(this).parent().parent();
+        $.ajax({
+            url : '/show/delete/',
+            type : 'POST',
+            data : {"id":$(this).parent().parent().find('[tag="t1"]').text()},
+            dataType:'JSON',
+            headers: {"X-CSRFToken": $.cookie('csrftoken')},
+            success:function (data) {
+                if (data.status){
+                    my_obj.remove();
+                    location.reload()
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

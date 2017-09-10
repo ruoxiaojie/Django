@@ -1,0 +1,142 @@
+{% extends "src.html"  %}
+{% block user %}{{ user }}{% endblock %}
+{% block action %}Add_Service{% endblock %}
+{% block content %}
+    <form class="form-horizontal"  style="padding: 50px 150px">
+        {% csrf_token %}
+      <div class="form-group">
+        <label for="service_name" class="col-md-2 control-label">业务线:</label>
+        <div class="col-md-4">
+          <input type="text" class="form-control" id="service_name" placeholder="Name" name="title_name" >
+        </div>
+      </div>
+        <div class="form-group">
+            <label for="title" class="col-md-2 control-label text-info" >管理员添加:</label>
+            <span id="title"></span>
+        </div>
+
+    </form>
+    <div class="form-group" style="margin-top: -50px"  >
+            <div class="col-md-offset-2 col-md-10" style="color: #5bc0de"><span class="col-md-5">已经选择:</span>
+                <span class="col-md-6">未选择:</span>
+            </div>
+            <div class="col-md-offset-2 col-md-8" id="myself">
+                <select name="fruit" id="fruit" multiple style="width: 150px;height: 300px"></select>
+                <input type="button" class="btn btn-info" value="左移" onclick="toleft();" style="vertical-align: 7px">
+                <input type="button" class="btn btn-info" value="全部左移" onclick="totalleft();" style="vertical-align: 7px">
+                <input type="button" class="btn btn-info" value="全部右移" onclick="totalright();" style="vertical-align: 7px">
+                <input type="button" class="btn btn-info" value="右移" onclick="toright();" style="vertical-align: 7px">
+                <select name="fish" id="fish" multiple style="width: 150px;height: 300px">
+                    {% for info in user_list %}
+                    <option value="{{ info.id }}">{{ info.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    </div>
+    <div class="form-group" >
+        <div class="col-md-offset-3 col-md-6" style="margin-top: 50px">
+            <button id="mybtn" class="btn btn-success" style="width: 100px">提交</button>
+            <a href="/index.html" class="btn btn-danger" style="margin-left: 50px;vertical-align: -2px">返回主页</a>
+        </div>
+    </div>
+
+
+<script>
+    function toleft(){
+//        append()
+//        selected就是选中的元素
+        $("#fish option:selected").appendTo("#fruit");
+    }
+
+    function totalleft(){
+        $("#fish option").appendTo("#fruit");
+    }
+
+    function toright(){
+        $("#fruit option:selected").appendTo("#fish");
+    }
+    function totalright(){
+         $("#fruit option").appendTo("#fish");
+    }
+
+        //绑定ajax事件
+        $flag = true;
+        $my_tag = true;
+    $('#service_name').blur(function () {
+        $(this).siblings('#notice').remove();
+        $(this).siblings('#mynotice').remove();
+        var host_name = $(this).val();
+        $.ajax({
+            url: "/show/check_service",
+            type: "POST",
+            data: {"service_name": $('#service_name').val()},
+            dataType: "JSON",
+            headers: {"X-CSRFToken": $.cookie('csrftoken')},
+            success: function (data) {
+                if(data.status){
+                    $('form').find('[role="alert1"]').remove();
+                    $('#service_name').after('<div id="notice" class="alert alert-danger col-md-12 " role="alert1" style="line-height: 3px;margin-top: 5px">' + host_name +'已经存在!'+ '</div>');
+                    $my_tag = false;
+                    $flag = false
+                }else{
+                    $('#service_name').next().remove();
+                    $my_tag = true;
+                    $flag = true;
+                }
+            }
+        });
+    });
+
+    //点击事件绑定通过ajax进行提交,然后清理空输入内容
+    $('#mybtn').click(function () {
+         $('#service_name').siblings('#mynotice').remove();
+         $('#myself').siblings('[role="alert1"]').remove();
+        if ($my_tag){
+            $flag = true
+        }
+        var my_list = document.getElementById('fruit').children;
+        var out_list = [];
+        if (my_list.length == 0){
+            $flag = false;
+            $('#myself').after('<div class="alert alert-danger col-md-offset-2 col-md-5 " ' +
+                    'role="alert1" style="line-height: 3px;margin-top: 5px  ">管理员选择不能为空!</div>')
+            if($('#service_name').val() == ''){
+                    $('#service_name').after('<div id="mynotice" class="alert alert-danger col-md-12 " role="alert1" style="line-height: 3px;margin-top: 5px">业务线名不能为空!</div>')
+            }
+
+        }else{
+            for (i=0;i<my_list.length;i++){
+                out_list.push(my_list[i].value)
+            }
+        }
+        if ($flag) {
+            $.ajax({
+                url: '/show/service',
+                type: 'POST',
+                data: {
+                    "name":$('#service_name').val(),
+                    "manager":out_list
+                },
+                dataType: "JSON",
+                headers: {"X-CSRFToken": $.cookie('csrftoken')},
+                traditional: true,
+                success: function (data) {
+                    if (data.status) {
+                        alert('添加成功');
+                        location.reload()
+
+                    } else {
+                        $.each(data.error,function (k,v) {
+                            var $error_msg =  '<div class="alert alert-danger col-md-12 " role="alert1" style="line-height: 3px;margin-top: 5px">' + v[0] + '</div>';
+                            $('#' + 'service_name').after($error_msg)
+
+                        })
+                    }
+
+                }
+            })
+        }
+    })
+
+</script>
+{% endblock %}

@@ -1,0 +1,182 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dragon 客户端 6.0</title>
+<link rel="icon" href="{% static 'img/mogujie.ico' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/normalize.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/demo.css' %}">
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/component.css' %}">
+
+<!--[if IE]>
+{#<script src="js/html5.js"></script>#}
+{#<script src="{% static 'bootstrap/js/html5.js' %}"></script>#}
+
+<![endif]-->
+    <style>
+        .error_div {
+            width: 300px;
+            height: 20px;
+            color: white;
+            border-color: #ebccd1;
+            margin-left: 10px;
+
+        }
+        .error_div1 {
+            margin-top: 45px;
+            width: 300px;
+            height: 20px;
+            color: white;
+            border-color: #ebccd1;
+            margin-left: 10px;
+
+        }
+        .error_div2 {
+            width: 300px;
+            height: 20px;
+            color: red;
+            border-color: #c9302c;
+            margin-left: 10px;
+            text-align: center;
+
+        }
+        .error_div3 {
+            width: 300px;
+            height: 20px;
+            color: red;
+            border-color: #c9302c;
+            margin-left: 10px;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body >
+		<div class="container demo-1">
+			<div class="content">
+				<div id="large-header" class="large-header" style="height: 1094px;">
+					<canvas id="demo-canvas" width="1360" height="1094"></canvas>
+					<div class="logo_box">
+						<h3>Dragon注册平台</h3>
+{#						<form action="#" name="f">#}
+							<div class="input_outer">
+								<span class="u_user"></span>
+								<input id='username' name="logname" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入注册账户">
+							</div>
+							<div class="input_outer">
+								<span class="us_uer"></span>
+								<input  id='password' name="logpass" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="password" placeholder="请输入注册密码">
+							</div>
+							<div class="input_outer">
+								<span class="us_uer"></span>
+								<input  id='password_retry' name="logpass1" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="password" placeholder="请再次输入密码">
+							</div>
+                            <div class="input_outer">
+								<span class="us_uer" style="background-position:-84px 0px"></span>
+								<input  id='email' name="email" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="text" placeholder="请输入邮箱">
+							</div>
+{#							<div class="mb2"><a class="act-but submit" href="javascript:;" style="color: #FFFFFF">登录</a></div>#}
+{#						</form>#}
+                            <div class="mb2"><button  id='mybtn' class="act-but submit" style="color: #FFFFFF;width: 330px;border: none;opacity:0.9;">注册</button></div>
+                        <a href="/login.html"><div class="mb2"><button  id='mybtn1' class="act-but submit" style="color: #FFFFFF;width: 330px;border: none;opacity:0.9;">返回登录</button></div></a>
+					</div>
+				</div>
+			</div>
+		</div><!-- /container -->
+
+		<script src="{% static "bootstrap/js/TweenLite.min.js" %}"></script>
+		<script src="{% static "bootstrap/js/EasePack.min.js" %}"></script>
+		<script src="{% static "bootstrap/js/rAF.js" %}"></script>
+		<script src="{% static "bootstrap/js/demo-1.js" %}"></script>
+        <script src="{% static "bootstrap/js/jquery.js" %}"></script>
+        <script src="{% static "bootstrap/js/jquery.cookie.js" %}"></script>
+
+
+        <script>
+                $my_tag1 = true;
+                $my_tag2 = true;
+                $('#username').blur(function () {
+                   $('#username').parent().parent().find(".error_div3").remove();
+                    $('#username').parent().parent().find(".error_div").remove();
+                   $.ajax({
+                       url:'/check_user',
+                       type:'POST',
+                       data:$(this).serialize(),
+                       dataType:'JSON',
+                       headers: {"X-CSRFToken": $.cookie('csrftoken')},
+                       success:function (data) {
+                           if (data.status){
+                                $('#username').parent().before('<div class="error_div3"></div>');
+                                $('#username').parent().prev().text($('#username').val()+'用户名已经存在');
+                                $my_tag1 = false
+                           }
+                           else{
+                               $my_tag1 = true
+                           }
+                       }
+                   })
+                });
+
+                $('#password_retry').blur(function () {
+                    $(this).parent().parent().find(".error_div2").remove();
+                    $('#password_retry').next().remove();
+                    $('#password').next().remove();
+                   if ($('#password').val() != $(this).val()){
+                       $(this).parent().before('<div class="error_div2">两次密码输入不一致</div>');
+                       $my_tag2 = false;
+                   }else{
+                       $my_tag2 = true;
+                   }
+                });
+
+
+                $('#mybtn').click(function () {
+                    if ($my_tag1 && $my_tag2) {
+                        $('#username').next().remove();
+                        $('#password').next().remove();
+                        $('#password_retry').next().remove();
+                        $('#email').next().remove();
+                        var flag = true;
+                        var user_name = $('#username').val();
+                        var user_pwd = $('#password').val();
+                        var user_pwd1 = $('#password_retry').val();
+                        var user_email = $('#email').val();
+                        if (flag) {
+                            $.ajax({
+                                url: '/register.html',
+                                type: 'POST',
+                                data: {"username": user_name, "password": user_pwd,"password_retry":user_pwd1,"email":user_email},
+                                dataType: "JSON",
+                                headers: {"X-CSRFToken": $.cookie('csrftoken')},
+                                success: function (data) {
+                                    if (data.status) {
+                                        alert('注册成功');
+                                        location.href = '/login.html'
+                                    }else{
+                                        console.log(data);
+                                        $.each(data.error,function (k,v) {
+                                           if (k == 'username'){
+                                               var $msg = "<div class='error_div'>" + v[0] + '</div>';
+                                               $('#' + k).after($msg)
+                                           }else {
+                                               var $msg = "<div class='error_div1'>" + v[0] + '</div>';
+                                               $('#' + k).after($msg);
+                                           }
+                                    }
+                                        )}
+                                }
+                            })
+                        }
+                    }
+                })
+
+
+        </script>
+
+</body>
+</html>
