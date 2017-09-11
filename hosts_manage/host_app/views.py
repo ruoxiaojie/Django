@@ -5,7 +5,7 @@ from host_app import models
 
 def auth(func):
     def inner(request,*args,**kwargs):
-        url=request.path ##第一次url
+        # url=request.path ##第一次url
         global url
         ck=request.session.get('uuuuuu')
         if not ck:
@@ -13,9 +13,7 @@ def auth(func):
         return func(request,*args,**kwargs)
     return inner
 
-@auth
-def user_change(request):
-    return HttpResponse("OK")
+
 
 
 def login(request):
@@ -30,7 +28,10 @@ def login(request):
             return render(request, 'login.html', {'msg': '用户名或密码错误'})
         else:
             request.session['uuuuuu'] = user
-            return redirect(url) #全局url 返回第一次访问url
+            return redirect('/index.html')
+
+
+#全局url 返回第一次访问url
 
 
 

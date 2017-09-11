@@ -22,7 +22,6 @@ urlpatterns = [
     url(r'^login.html$', views.login),
     url(r'^index.html$', views.index),
     url(r'^user.html$', views.user_list),
-    url(r'^user$', views.user_change),
     url(r'^logout$', views.logout),
     # url(r'^add$', views.add),
 ]
