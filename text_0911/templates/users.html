@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>users</title>
+</head>
+<body>
+<a href="/add">添加</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in user_list %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.password }}</td>
+                <td><a href="/edit_{{ user.id }}">编辑</a> <a href="/del_user_{{ user.id }}">删除</a></td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+</body>
+</html>

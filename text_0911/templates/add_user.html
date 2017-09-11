@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增加</title>
+</head>
+<body>
+<h1>增加加数据</h1>
+<form method="post" novalidate>
+    {% csrf_token %}
+    <p>&emsp;用户名:{{ form.username }} {{ form.errors.username.0 }}</p>
+    <p>&emsp;&emsp;密码:{{ form.password }} {{ form.errors.password.0 }}</p>
+    <p>用户类型:{{ form.ut_id }} {{ form.errors.ut_id.0 }}</p>
+    <p>用户角色:{{ form.role_id }} {{ form.errors.role_id.0 }}</p>
+    <p><input type="submit" value="确认添加"></p>
+</form>
+</body>
+</html>

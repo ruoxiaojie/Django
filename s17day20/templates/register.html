@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form id="f1">
+        {% csrf_token %}
+        <p>用户名：{{ form.user }}</p>
+        <p>密码：{{ form.password }}</p>
+        <p>邮箱：{{ form.email }}</p>
+        <input type="button" value="提交" onclick="submitForm();" />
+    </form>
+    <script src="/static/jquery-3.2.1.js"></script>
+    <script>
+        function submitForm() {
+            $('#f1 .error').remove();
+
+            $.ajax({
+                url: '/register.html',
+                type: 'POST',
+                data: $('#f1').serialize(),
+                dataType: 'JSON',
+                success:function (arg) {
+                    if(arg.status){
+                        location.href = "/login.html";
+                    }else{
+                        /*
+                        arg.msg = {
+                            email: ['xxxxx',]
+                            password: ['xxxxx',]
+                            user: ['xxxxx',]
+                        }
+                         */
+                        $.each(arg.msg,function (k,v) {
+                            var tag = document.createElement('span');
+                            tag.innerHTML = v[0];
+                            tag.className = "error";
+                            // <span class='error'>v[0]</span>
+                            $('#f1 input[name="'+k+'"]').after(tag);
+                        })
+                    }
+                }
+            })
+        }
+    </script>
+
+</body>
+</html>
