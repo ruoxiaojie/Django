@@ -3,9 +3,7 @@ from app01 import models
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 from django.utils.decorators import method_decorator
-
 # Create your views here.
-
 class AuthView:
     '''用户认证'''
     def dispatch(self,request,*args,**kwargs):
@@ -34,13 +32,11 @@ class LoginView(View):
             return redirect('/users')
         return render(request,'login.html',{'msg':'帐号或密码错误'})
 
-
 class UsersView(AuthView,View):
+    '''主页查询'''
     def get(self,request,*args,**kwargs):
         user_list = models.UserInfo.objects.all()
         return render(request,'users.html',{'user_list':user_list})
-
-
 
 from django.forms import Form
 from django.forms import fields
@@ -52,7 +48,8 @@ class UserForm(Form):
         min_length=4,
         max_length=16,
         error_messages={'required':'用户名不能为空'},
-        # error_messages={'required': '邮箱不能为空','invalid':'邮箱格式错误'}, 格式错误范例 比如邮箱 ip
+        # error_messages={'required': '邮箱不能为空','invalid':'邮箱格式错误'}, 格式错误范例
+        # 比如邮箱 ip
 
     )
     password = fields.CharField(
@@ -71,9 +68,6 @@ class UserForm(Form):
         # self.fields已经有所有拷贝的字段
         self.fields['ut_id'].choices = models.UserType.objects.values_list('id','title')
         self.fields['role_id'].choices = models.Role.objects.values_list('id','caption')
-
-
-
 
 class AddUserView(AuthView,View):
     '''添加记录'''
@@ -114,11 +108,36 @@ class EditUserView(AuthView,View):
             return render(request,'edit_user.html',{'form':form})
 
 class DelUserView(AuthView,View):
+    '''删除'''
     def get(self,request,pk):
         models.UserInfo.objects.filter(id=pk).delete()
         return redirect('/users')
 
+################只用表单的验证功能(Ajax)
+class RegisterForm(Form):
+    user=fields.CharField(required=True,min_length=4,max_length=8)
+    email=fields.EmailField(required=True,min_length=6,max_length=32)
+    password=fields.CharField(min_length=4,max_length=16)
 
+import json
+def register(request):
+    if request.method=='GET':
+        form=RegisterForm()
+        return render(request,'register.html',{'form':form})
+    else:
+        res={'status':True,'data':None,'msg':None}
+        form=RegisterForm(request.POST)
+        if form.is_valid():
+            # print(form.cleaned_data)
+            return HttpResponse(json.dumps(res))
+
+            # return redirect('/login')
+            #ajax不认识 return redirect('/login') 错误
+        else:
+            res['status'] = False
+            res['msg'] = form.errors
+            # print(form.errors) # form.errors 是对象
+            return HttpResponse(json.dumps(res))
 
 
 

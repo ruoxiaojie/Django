@@ -1,4 +1,4 @@
-"""text_0911 URL Configuration
+"""host_management URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -15,15 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from app01 import views
+from host_app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login$', views.LoginView.as_view()),
-    url(r'^users$', views.UsersView.as_view()),
-    url(r'^add$', views.AddUserView.as_view()),
-    url(r'^edit_(\d+)$', views.EditUserView.as_view()),
-    url(r'^del_user_(\d+)$', views.DelUserView.as_view()),
-    url(r'^register$', views.register),
-
+    url(r'^login.html$', views.LoginView.as_view()),
+    # url(r'^index.html$', views.IndexView.as_view()),
 ]
