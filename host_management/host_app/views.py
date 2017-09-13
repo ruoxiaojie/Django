@@ -6,9 +6,14 @@ from django.utils.decorators import method_decorator
 from utils.md5 import my_md5
 from django.forms import Form,fields
 
-
-
-
+class AuthView:
+    '''用户认证'''
+    def dispatch(self,request,*args,**kwargs):
+        if request.session.get('user_info'):
+            res = super(AuthView,self).dispatch(request,*args,**kwargs)
+            return res
+        else:
+            return redirect('/login.html')
 
 class UserForm(Form):
     '''生成Form表单'''
@@ -29,9 +34,6 @@ class UserForm(Form):
         error_messages={'required': 'IP不能为空', 'invalid': 'IP格式错误'}
     )
 
-
-
-
 class LoginView(View):
     '''登入'''
     @method_decorator(csrf_exempt) #取消csrf的防御机制
@@ -39,7 +41,7 @@ class LoginView(View):
         return super(LoginView,self).dispatch(request,*args,**kwargs)
 
     def get(self,request,*args,**kwargs):
-        return render(request,'login.html')
+        return render(request, 'login.html')
 
     def post(self,request,*args,**kwargs):
         user = request.POST.get('user')
@@ -49,9 +51,17 @@ class LoginView(View):
         if obj:
             request.session['user_info'] = {'id':obj.id,'username':obj.username}
             return redirect('/index.html')
-        return render(request,'login.html',{'msg':'帐号或密码不正确'})
+        return render(request, 'login.html', {'msg': '帐号或密码不正确'})
+
+def logout(request):
+    request.session.clear()
+    return redirect('/login.html')
 
 
+class IndexView(AuthView,View):
+    def get(self,request,*args,**kwargs):
+        user_list=models.UserInfo.objects.all()
+        return render(request,'index.html',{'user_list':user_list})
 
 
 

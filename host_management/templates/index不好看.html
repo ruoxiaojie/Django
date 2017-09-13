@@ -1,0 +1,102 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>主页</title>
+</head>
+<link rel="stylesheet" href="{% static 'bootstrap/css/index.css' %}">
+{#    <link rel="stylesheet" href="{% static "bootstrap/css/">#}
+
+<body id="bg">
+
+
+<div class="container">
+	<div class="leftsidebar_box">
+		<div class="line"></div>
+		<dl class="system_log">
+			<dt onClick="changeImage()">主机管理<img src="../static/images/left/select_xl01.png"></dt>
+
+			<dd class="first_dd"><a href="#">主机列表</a></dd>
+			<dd><a href="#">添加主机</a></dd>
+		</dl>
+	
+		<dl class="custom">
+			<dt onClick="changeImage()">用户管理<img src="../static/images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="#">充值1W以下</a></dd>
+			<dd><a href="#">充值1-10W</a></dd>
+			<dd><a href="#">充值10W以上</a></dd>
+			<dd><a href="#">穷比不统计</a></dd>
+		</dl>
+	
+		<dl class="channel">
+			<dt>游戏管理<img src="../static/images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="#">英雄联盟</a></dd>
+			<dd><a href="#"></a></dd>
+			<dd><a href="#">王者荣耀</a></dd>
+			<dd><a href="#">传奇世界</a></dd>
+			<dd><a href="#">欢乐斗地主</a></dd>
+		</dl>
+	
+		<dl class="app">
+			<dt onClick="changeImage()">APP管理<img src="../static/images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="#">王者荣耀IOS</a></dd>
+			<dd><a href="#">王者荣耀Android</a></dd>
+			<dd><a href="#">欢乐斗地主IOS</a></dd>
+			<dd><a href="#">欢乐斗地主Android</a></dd>
+		</dl>
+	
+		<dl class="cloud">
+			<dt>大数据云平台<img src="../static/images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="#">hadoop</a></dd>
+		</dl>
+	
+		<dl class="syetem_management">
+			<dt>系统管理<img src="../static/images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="#">后台用户管理</a></dd>
+			<dd><a href="#">角色管理</a></dd>
+
+		</dl>
+	
+		<dl class="source">
+			<dt>图书管理<img src="../static/images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="#">图书库</a></dd>
+		</dl>
+	
+		<dl class="statistics">
+			<dt>界面管理<img src="../static/images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="#">查看用户</a></dd>
+			<dd class="first_dd"><a href="#">查看业务</a></dd>
+			<dd class="first_dd"><a href="#">注销用户</a></dd>
+		</dl>
+	</div>
+</div>
+
+
+
+
+<script type="text/javascript" src="{% static 'bootstrap/js/jquery.js' %}"></script>
+
+<script type="text/javascript">
+$(".leftsidebar_box dt").css({"background-color":"#3992d0"});
+$(".leftsidebar_box dt img").attr("src","../static/images/left/select_xl01.png");
+$(function(){
+	$(".leftsidebar_box dd").hide();
+	$(".leftsidebar_box dt").click(function(){
+		$(".leftsidebar_box dt").css({"background-color":"#3992d0"})
+		$(this).css({"background-color": "#317eb4"});
+		$(this).parent().find('dd').removeClass("menu_chioce");
+		$(".leftsidebar_box dt img").attr("src","../static/images/left/select_xl01.png");
+		$(this).parent().find('img').attr("src","../static/images/left/select_xl01.png");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('dd').slideToggle();
+		$(this).parent().find('dd').addClass("menu_chioce");
+	});
+})
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+
+</div>
+</body>
+</html>
