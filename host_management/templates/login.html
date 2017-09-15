@@ -42,10 +42,10 @@
          <h3><b>XjGo!</b></h3>
         <form method="post"> {#  #novalidate#}
               {% csrf_token %}
-                <p><input type="text" name="user" placeholder="Please input username" /></p>
-                <p><input type="password" name="pwd" placeholder="Please input password" />
+                <p><input type="text" name="user" placeholder="请输入账号" /></p>
+                <p><input type="password" name="pwd" placeholder="请输入密码" />
                     <span style="color: red">{{ msg }}</span></p>
-                <p><input type="submit" value="Sign in" class="btn btn-success" style="width: 190px"></p>
+                <p><input type="submit" value="登入" class="btn btn-success" style="width: 190px"></p>
         </form>
     </div>
 </div>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}游戏列表{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/static/bootstrap/css/index.css">
+<h2 style="color: blue">游戏列表</h2>
+<table border="1" align="center" valign="center">
+    <thead>
+        <tr style="border: 2px;">
+            <th><b>ID</b></th>
+            <th><b>游戏</b></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in game_list %}
+            <tr>
+                <td><b>{{ game.id }}</b></td>
+                <td><b>{{ game.name }}</b></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination1">
+    {{ page_str |safe }}
+</div>
+
+{% endblock %}

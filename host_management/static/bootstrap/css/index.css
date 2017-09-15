@@ -24,3 +24,11 @@ a{text-decoration:none;}
 .source dt{background-image:url(../../images/left/source.png)}
 .statistics dt{background-image:url(../../images/left/statistics.png)}
 .leftsidebar_box dl dd:last-child{padding-bottom:10px;}
+.pagination1 a{display: inline-block;padding: 2px 2px;background-color: #1926ff;margin: 3px;color: white;}
+.pagination1 a.active{background-color: green}
+table{border-collapse: collapse;}
+table th,table,td{color: red;border: 1px solid #265a88;}
+table th,td{width: 100px;align-content: center;}
+table th,td{color: red}
+
+

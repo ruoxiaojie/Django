@@ -22,4 +22,9 @@ urlpatterns = [
     url(r'^logout.html$', views.logout),
     url(r'^login.html$', views.LoginView.as_view()),
     url(r'^index.html$', views.IndexView.as_view()),
+    url(r'^hosts.html$', views.HostsView.as_view()),
+    url(r'^games.html$', views.GamesView.as_view()),
+    url(r'^users.html$', views.UsersView.as_view()),
+    url(r'^edit_(\d+).html$', views.EditUserView.as_view()),
+    url(r'^adduser.html$', views.AddUserView.as_view()),
 ]
