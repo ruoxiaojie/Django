@@ -1,5 +1,10 @@
 from django.db import models
 
+# Create your models here.
+
+
+from django.db import models
+
 class UserInfo(models.Model):
     username = models.CharField(max_length=32)
     password = models.CharField(max_length=64)
@@ -18,14 +23,9 @@ class News(models.Model):
     # 点赞和评论时，记着更新like_count，comment_count。自增1： F 实现
     like_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
-    # 第一种
-    # like = models.ManyToManyField(to='UserInfo')
 
     # 查询功能才能使用
-    # likes = models.ManyToManyField(to='UserInfo',through="Like",through_fields=('nnew','uuser'))
-# new_list = News.objects.all()
-# for obj in new_list:
-#     obj.title,
+    likes = models.ManyToManyField(to='UserInfo',through="Like",through_fields=('nnew','uuser'))
 
 class Comment(models.Model):
     content = models.CharField(verbose_name='评论内容',max_length=255)
@@ -33,16 +33,7 @@ class Comment(models.Model):
     user = models.ForeignKey(verbose_name='评论者',to='UserInfo')
     ctime = models.DateTimeField(verbose_name='评论时间', auto_now_add=True)
 
-# 第二种
-# class Like(models.Model):
-#     user = models.ForeignKey(to='UserInfo')
-#     news = models.ForeignKey(to='News')
-#     ctime = models.DateTimeField(verbose_name='点赞时间', auto_now_add=True)
-#
-#     class Meta:
-#         unique_together = [
-#             ('user','news'),
-#         ]
+
 
 class Like(models.Model):
     uuser = models.ForeignKey(to='UserInfo',related_name='a')
