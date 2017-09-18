@@ -5,15 +5,16 @@ from django.views.decorators.csrf import csrf_protect,csrf_exempt
 from django.utils.decorators import method_decorator
 from utils.md5 import my_md5
 from utils.page import Page
-from django.forms import Form,fields
+from django.forms import Form,fields,widgets
+from django import forms
 
 class AuthView(View):
     '''用户认证'''
     @method_decorator(csrf_exempt)
     def dispatch(self,request,*args,**kwargs):
         if request.session.get('user_info'):
-            res = super(AuthView,self).dispatch(request,*args,**kwargs)
-            return res
+            response = super(AuthView,self).dispatch(request,*args,**kwargs)
+            return response
         else:
             return redirect('/login.html')
 
@@ -25,17 +26,19 @@ class UserForm(Form):
     )
     password = fields.CharField(
         max_length=16,
+        widget=forms.PasswordInput(),
         error_messages={'required':'密码不能为空'}
+
     )
     email = fields.EmailField(
         max_length=32,
         error_messages={'required': '邮箱不能为空', 'invalid': '邮箱格式错误'},
     )
 
-    ip = fields.GenericIPAddressField(
-        max_length=16,
-        error_messages={'required': 'IP不能为空', 'invalid': 'IP格式错误'}
-    )
+    # ip = fields.GenericIPAddressField(
+    #     max_length=16,
+    #     error_messages={'required': 'IP不能为空', 'invalid': 'IP格式错误'}
+    # )
 
 class LoginView(View):
     '''登入'''
@@ -106,6 +109,8 @@ class UsersView(AuthView,View):
         page_str = page_obj.page_html()
         return render(request, 'users.html', {'user_list': user_list, 'page_str': page_str})
 
+
+
 class AddUserView(AuthView,View):
     '''添加用户,利用form表单'''
     def get(self,request,*args,**kwargs):
@@ -114,17 +119,21 @@ class AddUserView(AuthView,View):
     '''确认添加后POST请求进来'''
     def post(self,request,*args,**kwargs):
         form=UserForm(data=request.POST)
+        if form.is_valid():
+            obj = models.UserInfo.objects.create(**form.cleaned_data)
+            return redirect('/users.html')
+        else:
+            return render(request,'adduser.html',{'form':form})
 
-        print(form.cleaned_data)
-        return HttpResponse("ok")
+
+
 
 
 class EditUserView(AuthView,View):
     '''用户编辑'''
     def get(self,request,pk):
         obj = models.UserInfo.objects.filter(id=pk).first()
-        if __name__ == '__main__':
-            pass
+        pass
 
 
 

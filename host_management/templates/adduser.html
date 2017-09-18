@@ -6,7 +6,7 @@
 
 <h1 style="color: #1b6d85">增加用户</h1>
 
-        <form method="post">
+        <form method="post" novalidate>
     {% csrf_token %}
         <p>用户名:{{ form.username }}{{ form.errors.username.0 }}</p>
         <p>&emsp;密码:{{ form.password }}{{ form.errors.password.0 }}</p>
