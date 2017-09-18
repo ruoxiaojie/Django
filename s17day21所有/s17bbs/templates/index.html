@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>分类列表</h1>
+    <ul>
+        {% if current_new_type_id %}
+            <li><a href="/">全部</a></li>
+        {% else %}
+            <li><a style="color:green" href="/">全部</a></li>
+        {% endif %}
+
+        {% for row in new_type_list %}
+            {% if row.id == current_new_type_id %}
+                <li><a style="color:green" href="/all/{{ row.id }}/">{{ row.caption }}</a></li>
+            {% else %}
+                <li><a href="/all/{{ row.id }}/">{{ row.caption }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <h2>新闻列表</h2>
+    <div>
+        {% for row in new_list %}
+            <div>{{ row.title }} - {{ row.comment_count }} - <a new-id="{{ row.id }}">{{ row.like_count }}</a></div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <p> 用户名：{{ form.name }} {{ form.errors.name.0 }} </p>
+        <p> 邮箱：{{ form.email }} {{ form.errors.email.0 }}</p>
+        <p> 手机：{{ form.phone }} {{ form.errors.phone.0 }}</p>
+        <p> 密码：{{ form.pwd }} {{ form.errors.pwd.0 }}</p>
+        <p> 城市：{{ form.city }} {{ form.errors.city.0 }}</p>
+        <p> 确认密码：{{ form.pwd_confirm }} {{ form.errors.pwd_confirm.0 }}</p>
+        <input type="submit" value="提交" />
+    </form>
+</body>
+</html>

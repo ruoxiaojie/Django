@@ -1,0 +1,268 @@
+s17day21
+内容回顾：
+	FBV，CBV
+	序列化
+		- Django内置
+		- json.dumps(xxx,cls=)
+	Form验证
+		- 类
+			class LoginForm(Form):
+				user = fields.CharField(...)
+				email = fields.EmailField(...)
+				email = fields.ChoiceField(
+					choices=[()..]
+				)
+		- 添加用户: GET
+			form = LoginForm()
+			
+			{{form.user}}    <input type='text' name='user' />
+			
+			等待用户输入内容，提交
+			
+		- 添加用户： POST
+			form = LoginForm(data=request.POST)
+			form.is_valid()
+			form.cleaned_data
+			form.errors
+			
+		- 修改用户： GET   /edit/9
+			obj = models.User.objects.get(id=9)
+			
+			form = LoginForm(initial={'user':obj.user})
+			
+			{{form.user}}    <input type='text' name='user' value='数据库中的用户名' />
+			
+			等待用户输入内容，提交
+			
+		- 修改用户： POST   /edit/9
+			form = LoginForm(data=request.POST)
+			form.is_valid()
+			form.cleaned_data
+				models.User.objects.filter(id=9).update(**form.cleaned_data)
+			form.errors
+			
+		- 补充：可以显示select，但是数据无法实时更新
+			class LoginForm(Form):
+				user = fields.CharField(...)
+				email = fields.EmailField(...)
+				hobby = fields.ChoiceField(
+					choices=[()..]
+				)
+				
+				def __init__(self,*args,**kwargs):
+					super..
+					self.fields['hobby'].choices = ....
+			
+
+今日内容概要：
+
+    - Form验证（二）
+		- 自定义验证规则
+			a. 对象
+				# phone = fields.CharField(validators=[RegexValidator(r'^[0-9]+$', '请输入数字'),])
+			b. 函数
+			c. clean_字段名称 方法
+				    def clean_phone(self):
+					"""
+
+					:return: 必须有返回值，
+					"""
+					# 去取用户提交的值：可能是错误的，可能是正确
+					value = self.cleaned_data['phone']
+					mobile_re = re.compile(r'^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$')
+					if not mobile_re.match(value):
+						raise ValidationError('手机号码格式错误')
+
+					if models.UserInfo.objects.filter(phone=value).count():
+						raise ValidationError('手机号码已经存在')
+
+					return value
+				**********方法中只能取当前字段的值 **********
+		- 验证规则执行顺序
+			- 第一个字段的正则，钩子函数（方法中只能取当前字段的值）
+			- 第二个字段的正则，钩子函数
+		- 整体验证： clean,必须有返回值,   给指定字段添加错误信息
+			class RegisterForm(Form):
+				name = fields.CharField()
+				email = fields.EmailField()
+				phone = fields.CharField()
+				pwd = fields.CharField()
+				pwd_confirm = fields.CharField()
+
+				def clean(self):
+					pwd = self.cleaned_data['pwd']
+					pwd_confirm = self.cleaned_data['pwd_confirm']
+					if pwd == pwd_confirm:
+						return self.cleaned_data
+					else:
+						from django.core.exceptions import ValidationError
+						# self.add_error('pwd', ValidationError('密码输入不一致'))
+						self.add_error('pwd_confirm', ValidationError('密码输入不一致'))
+						return self.cleaned_data
+			
+		- 常用插件
+			
+			class RegisterForm(Form):
+				name = fields.CharField(
+					widget=widgets.TextInput(attrs={'class': 'c1'})
+				)
+				email = fields.EmailField(
+					widget=widgets.EmailInput(attrs={'class':'c1'})
+				)
+				phone = fields.CharField(
+					widget=widgets.Textarea(attrs={'class':'c1'})
+				)
+				pwd = fields.CharField(
+					widget=widgets.PasswordInput(attrs={'class':'c1'})
+				)
+				pwd_confirm = fields.CharField(
+					widget=widgets.PasswordInput(attrs={'class': 'c1'})
+				)
+				# 单选：select
+				# city = fields.ChoiceField(
+				#     choices=[(0,"上海"),(1,'北京')],
+				#     widget=widgets.Select(attrs={'class': 'c1'})
+				# )
+				# 多选：select
+				# city = fields.MultipleChoiceField(
+				#     choices=[(1,"上海"),(2,'北京')],
+				#     widget=widgets.SelectMultiple(attrs={'class': 'c1'})
+				# )
+				
+				# 单选：checkbox
+				# city = fields.CharField(
+				#     widget=widgets.CheckboxInput()
+				# )
+
+				# 多选：checkbox
+				# city = fields.MultipleChoiceField(
+				#     choices=((1, '上海'), (2, '北京'),),
+				#     widget=widgets.CheckboxSelectMultiple
+				# )
+
+				# 单选：radio
+				# city = fields.CharField(
+				#     initial=2,
+				#     widget=widgets.RadioSelect(choices=((1,'上海'),(2,'北京'),))
+				# )
+		
+			注意：写默认值时，多选值对应列表
+			
+			# form = RegisterForm(initial={'city':[1,2],'name':'alex'})
+			form = RegisterForm()
+		
+      参考博客：http://www.cnblogs.com/wupeiqi/articles/6144178.html 
+
+    - 中间件
+		- 中间件执行时机：请求到来，请求返回时
+		- 中间件是一个类：
+			    def process_request(self,request):
+					print('m2.process_request')
+
+				def process_response(self,request, response):
+					print('m2.prcess_response')
+					return response
+					
+		- 应用：
+			- 请求日志
+			- 用户登录认证
+	
+    - 缓存
+		- 配置
+			- 开发调试
+			- 内存中 全局变量
+			- 文件中
+			- 数据库
+			- Memcached
+		- 使用
+			- 全局
+				MIDDLEWARE = [
+					'django.middleware.cache.UpdateCacheMiddleware',
+					# 其他中间件
+					'django.middleware.cache.FetchFromCacheMiddleware',
+				]
+			- 视图函数
+			
+				from django.views.decorators.cache import cache_page
+
+				@cache_page(10)
+				def test1(request):
+					import time
+					ctime = time.time()
+					return render(request,'test1.html',{'ctime':ctime})
+			- 局部模板
+				{% load cache %}
+				<!DOCTYPE html>
+				<html lang="en">
+				<head>
+					<meta charset="UTF-8">
+					<title>Title</title>
+				</head>
+				<body>
+					<h1>TEST1 -> {{ ctime }}</h1>
+
+
+					{% cache 10 "asdfasdfasdf" %}
+						<h1>TEST1 -> {{ ctime }}</h1>
+					{% endcache %}
+				</body>
+				</html>
+		
+    - 信号
+		问题：如何在数据库中做增加操作时，记录日志
+      参考博客：http://www.cnblogs.com/wupeiqi/articles/5246483.html 
+
+    - Admin
+      参考博客：http://www.cnblogs.com/wupeiqi/articles/7444717.html 
+
+    - ModelForm（下周讲）
+      参考博客：http://www.cnblogs.com/wupeiqi/articles/6229414.html 
+
+    - BBS项目练习：
+        地址：http://dig.chouti.com/ 
+        要求：
+            表结构设计
+            功能开发：
+                页面样式和布局
+                文章列表（分页）
+                点赞：思路，发送ajax请求：
+							- 判断：
+								已经存在： like表中删除一条记录，new中like_count,自减1
+								不存在： like表中天剑一条记录，new中like_count,自加1
+							- 登录之后才能点赞
+                
+                发布文章（上传图片）
+					1. 根据URL，自动获取标题和摘要
+					   pip3 install beautifulsoup4
+					   pip3 install requests
+					   点击：
+							发送Ajax请求，将 http://music.163.com/#/song?id=188057 发送到后台
+							def get_title_summary(request):
+								url = request.POST.get('url')
+								import requests
+								from bs4 import BeautifulSoup
+
+
+								response = requests.get('http://music.163.com/#/song?id=188057')
+								soup = BeautifulSoup(response.text,'html.parser')
+								title = soup.find('title').text
+								desc = soup.find('meta',attrs={'name': 'description'}).get('content')
+								print(title)
+								print(desc)
+								data = {'title':title,'desc':decc}
+								return HttpResponse(json.dumps(data))
+					2. 基于Ajax实现图片上传	
+						隐藏的Input框，放置头像路径
+					
+				评论
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
