@@ -6,8 +6,8 @@ div{display: block;}
 .digg-logo{width: 121px;height: 23px;background: url("/static/images/logo.png") no-repeat 0 0;
     float: left;margin-top: 11px}
 a{text-decoration: none}
-a, blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr,
-input, legend, li, ol, p, pre, td, textarea, th, ul {
+a,body, button,form,hr,
+input,li,p, pre, td, textarea, th, ul {
     margin: 0;
     padding: 0;
 }
@@ -18,3 +18,16 @@ input, legend, li, ol, p, pre, td, textarea, th, ul {
     margin-left: -3px;
     padding: 0 13px 0 16px;
     display: inline-block;}
+
+.input-group{
+    top: 0;left: 0;z-index: 1000;width: 100%;position: fixed;
+}
+
+.search-txt-s {
+    float: right;
+    padding: 2px 2px 2px 5px;
+    height: 25px;
+    width: 91px;}
+.tb1{
+    margin-left: 500px;
+}

@@ -28,7 +28,14 @@ class LoginView(View):
             return redirect('/index.html')
         return render(request, 'login.html', {'msg': '帐号或密码不正确'})
 
+
 def index(request):
     return render(request,'index.html')
+
+
+
+def logout(request):
+    request.session.clear()
+    return redirect('/login.html')
 
 

@@ -20,5 +20,6 @@ from app01 import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index.html$', views.index),
+    url(r'^logout.html$', views.logout),
     url(r'^login.html$', views.LoginView.as_view()),
 ]
