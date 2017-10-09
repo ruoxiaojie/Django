@@ -1,41 +1,46 @@
 from django.shortcuts import render,HttpResponse,redirect
+from django.db.models import F
+from django.db import transaction
+from utils.response import LikeReseponse
 from app01 import models
-from django.views import View
-from django.views.decorators.csrf import csrf_protect,csrf_exempt
-from django.utils.decorators import method_decorator
-from utils.md5 import my_md5
-from utils.page import Page
-from django.forms import Form,fields,widgets
-from django import forms
-from utils.auth import AuthView
+import json
 
-class LoginView(View):
-    '''登入'''
-    @method_decorator(csrf_exempt) #取消csrf的防御机制
-    def dispatch(self, request, *args, **kwargs):
-        return super(LoginView,self).dispatch(request,*args,**kwargs)
-
-    def get(self,request,*args,**kwargs):
-        return render(request, 'login.html')
-
-    def post(self,request,*args,**kwargs):
-        user = request.POST.get('user')
-        pwd = request.POST.get('pwd')
-        pwd = my_md5(pwd)
-        obj = models.UserInfo.objects.filter(username=user,password=pwd).first()
-        if obj:
-            request.session['user_info'] = {'id':obj.id,'username':obj.username}
-            return redirect('/index.html')
-        return render(request, 'login.html', {'msg': '帐号或密码不正确'})
-
-
-def index(request):
-    return render(request,'index.html')
+def index(request,*args,**kwargs):
+    current_new_type_id = kwargs.get('new_type_id')
+    if current_new_type_id:
+        current_new_type_id = int(current_new_type_id)
+    new_type_list = models.NewsType.objects.all()
+    new_list = models.News.objects.filter(**kwargs)
+    return render(request, 'index.html',
+                  {'new_type_list': new_type_list, 'new_list': new_list, 'current_new_type_id': current_new_type_id})
 
 
 
-def logout(request):
-    request.session.clear()
-    return redirect('/login.html')
+def do_like(request):
+    response = LikeReseponse()
+
+    try:
+        new_id = request.POST.get('newID')
+
+        uid = 1
+        exist_like = models.Like.objects.filter(nnew=new_id,uuser=uid).count()
+        with transaction.atomic():
+            if exist_like:
+                models.Like.objects.filter(nnew=new_id,uuser=uid).delete()
+                models.News.objects.filter(id=new_id).update(like_count=F('like_count') - 1)
+                response.code = 666
+            else:
+                models.Like.objects.create(nnew=new_id, uuser=uid)
+                models.News.objects.filter(id=new_id).update(like_count=F('like_count') + 1)
+                response.code = 999
+    except Exception as e:
+        response.msg = str(e)
+    else:
+        response.status = True
+    return HttpResponse(json.dumps(response.get_dict()))
+
+
+
+
 
 
