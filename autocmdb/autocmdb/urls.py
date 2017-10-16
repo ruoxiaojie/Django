@@ -1,4 +1,4 @@
-"""bbs_v3 URL Configuration
+"""autocmdb URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from app01.views import *
-
+from app01 import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^index/', index),
-    url(r'^login/', login),
-    url(r'^digg/$', digg),
+    url(r'^asset.html$', views.asset),
+    url(r'^host_list.html$', views.host_list),
+    url(r'^add_host.html$', views.add_host),
 ]

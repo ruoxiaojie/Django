@@ -1,4 +1,4 @@
-"""bbs_v3 URL Configuration
+"""cmdbv1 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -14,12 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
-from app01.views import *
-
+# from django.contrib import admin
+from app01 import views
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^index/', index),
-    url(r'^login/', login),
-    url(r'^digg/$', digg),
+    # url(r'^admin/', admin.site.urls),
+    url(r'^asset.html$', views.asset),
+    url(r'^host_list.html$', views.host_list),
+    url(r'^add_host.html$', views.add_host),
 ]
+
