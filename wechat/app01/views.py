@@ -24,3 +24,5 @@ def login(req):
 
 
     return render(req,'login.html',{'uuid':uuid})
+
+
