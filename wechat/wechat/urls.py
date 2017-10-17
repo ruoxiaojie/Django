@@ -20,4 +20,5 @@ from app01 import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login.html/', views.login),
+    url(r'^check_login.html/', views.check_login),
 ]

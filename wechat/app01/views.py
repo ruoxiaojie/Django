@@ -2,7 +2,7 @@ from django.shortcuts import render,HttpResponse
 
 # Create your views here.
 import requests
-import time,re
+import time,re,json
 
 def login(req):
     req.method == "GET"
@@ -25,4 +25,17 @@ def login(req):
 
     return render(req,'login.html',{'uuid':uuid})
 
-
+def check_login(req):
+    response={'code':408,'data':None}
+    ctime = int(time.time()*1000)
+    '''htt----VJ5DQlpQ==&tip=1&r=-724936237&_=1508258456655'''
+    base_login_url = "https://login.wx.qq.com/cgi-bin/mmwebwx-bin/login?loginicon=true&uuid={0}&tip=1&r=-724936237&_={1}"
+    login_url = base_login_url.format(req.session['UUID'],ctime)
+    r1 = requests.get(login_url)
+    if 'window.code=408' in r1.text:
+        response['code'] = 408
+    elif 'window.code=201' in r1.text:
+        #扫码成功返回头像
+        response['code'] = 201
+        response['data'] = re.findall("window.userAvatar = '(.*)';",r1.text)[0]
+    return HttpResponse(json.dumps(response))
