@@ -38,4 +38,17 @@ def check_login(req):
         #扫码成功返回头像
         response['code'] = 201
         response['data'] = re.findall("window.userAvatar = '(.*)';",r1.text)[0]
+    elif 'window.code=200' in r1.text:
+        #扫码 确认登入
+        req.session['LOGIN_COOKIE'] = r1.cookies.get_dict()
+        base_redirect_url=re.findall('redirect_url="(.*)";',r1.text)[0]
+        redirect_url=base_redirect_url + '&fun=new&version=v2'
+
+        #获取凭证
     return HttpResponse(json.dumps(response))
+
+
+
+
+
+
