@@ -26,7 +26,9 @@
                     checkLogin();
                 }else if(arg.code == 201){
                     $('#img').attr('src',arg.data);
-        }
+                }else if(arg.code == 200){
+                    alert('456789')
+                }
         }
         })
     }

@@ -43,6 +43,7 @@ def check_login(req):
         req.session['LOGIN_COOKIE'] = r1.cookies.get_dict()
         base_redirect_url=re.findall('redirect_url="(.*)";',r1.text)[0]
         redirect_url=base_redirect_url + '&fun=new&version=v2'
+        print(redirect_url)
 
         #获取凭证
     return HttpResponse(json.dumps(response))
