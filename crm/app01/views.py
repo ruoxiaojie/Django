@@ -17,6 +17,18 @@ def login(request):
             # models.UserInfo.objects.filter(username=form.cleaned_data['user'],password=form.cleaned_data['pwd'])
             user = models.UserInfo.objects.filter(**form.cleaned_data).first()
             if user:
+                #role_list=user.roles,all()
+                role_list=user.roles.values(
+                    'title',
+                    'permissions__title',
+                    'permissions__url',
+                    'permissions__code',
+                    'permissions__group',
+                    'permissions__is_menu',
+                ).distinct()
+                print(role_list)
+                return HttpResponse('ok')
+
                 return redirect('/index/')
             else:
                 # form.add_error("password","用户名或密码错误") #lowb
