@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>学生登录</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <input type="text" name="user" placeholder="用户名"/>
+    </p>
+    <p>
+        <input type="password" name="pwd" placeholder="密码"/>
+    </p>
+    <input type="submit" value="提交">
+</form>
+<div style="color: #d4d4d4">
+    <h3>示例账户：</h3>
+    <p>用户名：张三阳；密码：123；Python全栈(5期)</p>
+    <p>用户名：李四阳；密码：123；Python全栈(5期)；</p>
+    <p>用户名：贾静雯；密码：123；Linux脱产(8期)</p>
+    <p>用户名：范坚强；密码：123；Python全栈(5期)；Linux脱产(8期)</p>
+</div>
+</body>
+</html>
