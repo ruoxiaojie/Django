@@ -18,7 +18,7 @@ def login(request):
             user = models.UserInfo.objects.filter(**form.cleaned_data).first()
             if user:
                 #role_list=user.roles,all()
-                role_list=user.roles.values(
+                permissions_list=user.roles.values(
                     'title',
                     'permissions__title',
                     'permissions__url',
@@ -26,8 +26,12 @@ def login(request):
                     'permissions__group',
                     'permissions__is_menu',
                 ).distinct()
-                print(role_list)
-                return HttpResponse('ok')
+                print(permissions_list)
+                permissions_dict = {}
+                for item in permissions_list:
+                    group_id = item['permissions__group']
+
+
 
                 return redirect('/index/')
             else:
@@ -36,3 +40,5 @@ def login(request):
                 form.add_error("password", ValidationError("用户名或密码错误"))
 
         return render(request, 'login.html', {'form': form})
+
+
