@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rbac'
 ]
 
+from django.middleware.common import CommonMiddleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rbac.middleware.rbac.RbacMiddleware',
 ]
 
 ROOT_URLCONF = 'crm.urls'
@@ -125,4 +127,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
 
+#权限相关配置
 XX = "permission_dict"
+URL_FORMAT = "^{0}$"
+RBAC_LOGIN_URL = '/login/'
+VALID_URL_LIST = [
+    "^/login/$",
+    "^/admin.*",
+]

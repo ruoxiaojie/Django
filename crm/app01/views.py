@@ -3,6 +3,8 @@ from django.forms import Form,fields,widgets
 from rbac import models
 from rbac.service.init_permission import init_permission
 import re
+from django.conf import settings
+
 class LoginForm(Form):
     username = fields.CharField(required=True,error_messages={'required':"用户名不能为空"})
     password = fields.CharField(required=True,error_messages={'required':"密码不能为空"})
@@ -29,23 +31,6 @@ def login(request):
         return render(request, 'login.html', {'form': form})
 
 def index(request):
-    # 当前请求url
-    current_request_url = request.path_info
-    # 获取session中保存的权限信息
-    from django.conf import settings
-    permission_dict = request.session.get(settings.XX)
-    if not permission_dict:
-        return HttpResponse('未登入')
-    flag = False
-    for group_id, values in permission_dict.items():
-        for url in values['urls']:  # 正则的url
-            if re.match(url, current_request_url):
-                flag = True
-                break
-        if flag:
-            break
-    if not flag:
-        return HttpResponse('没有权限访问')
 
     return HttpResponse('欢迎登入')
 
