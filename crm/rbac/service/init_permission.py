@@ -11,7 +11,9 @@ def init_permission(request,user):
         'permissions__url',
         'permissions__code',
         'permissions__group',
-        'permissions__is_menu'
+        'permissions__is_menu',
+        'permissions__group__parent_id', #当前权限所在组的菜单的ID
+        'permissions__group__parent__title', #当前权限所在组的菜单的名称
     ).distinct()
     #print(permission_list)
     """
@@ -20,6 +22,21 @@ def init_permission(request,user):
         2:{'codes':['list','add'],urls:['/order/','/order/add/']},
     }
     """
+    permission_menu_list = []
+    for item in permission_list:
+        is_menu = item['permissions__is_menu']
+        if not is_menu:
+            continue
+        tmp = {'title': item['permissions__title'],
+               'url': item['permissions__url'],
+               'menu_id': item['permissions__group__parent_id'],
+               'menu_title': item['permissions__group__parent__title'],
+               }
+        permission_menu_list.append(tmp)
+        print(permission_list)
+
+        request.session[settings.OO] = permission_menu_list
+
     permission_dict = {}
     for item in permission_list:
         group_id = item['permissions__group']
@@ -30,5 +47,7 @@ def init_permission(request,user):
             permission_dict[group_id]['urls'].append(url)
         else:
             permission_dict[group_id] = {"codes": [code, ], "urls": [url, ]}
+
+
 
     request.session[settings.XX] = permission_dict

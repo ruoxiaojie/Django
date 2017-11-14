@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{margin: 0%}
+        .item .header{padding: 5px 8px;font-size: 18px;font-weight: bold}
+        .item .permissions{padding-left: 20px}
+        .item .permissions a{display: block;}
+    </style>
+</head>
+<body>
+    <div style="height: 48px;background-color: black">头部菜单</div>
+    <div>
+        <div style="float: left; width: 20%;min-height: 500px;background-color: #dddddd">
+            {% for k,item in page_menu.items %}
+                <div class="item">
+                    <div class="header">{{ item.menu_title }}</div>
+                    <div class="permissions">
+                        {% for v in item.children %}
+                            <a href="{{ v.url }}">{{ v.title }}</a>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            {% endfor %}
+
+
+
+
+
+
+
+        </div>
+        <div style="float: left; width: 80%;min-height: 500px">
+
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,25 +1,20 @@
 #!/usr/bin/python
 # Author:xiaojie
 # -*- coding:utf-8 -*-
-
-class A:  # 定义交通工具类
-    def __init__(self, name):
-        self.name = name
-    def run(self):
-        print('开动啦...')
-
-class B(A):  # 地铁
-    def __init__(self, name, line):
-        # super(Subway,self) 就相当于实例本身 在python3中super()等同于super(Subway,self)
-        super().__init__(name)
-        self.line = line
-
-    def run(self):
-        print(self.line)
-        super(B, self).run()
+import re
 
 
-line13 = B('213', 'line')
-line13.run()
+a = "狙击精英：巅峰对决[HD-720P-MP4][中英双字]"
+b =re.findall('(\S*)\[.*\]\[.*\]',a)[0]
+print(b)
+
+# \[
+
+
+
+
+
+
+
 
 

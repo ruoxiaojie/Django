@@ -129,6 +129,7 @@ STATICFILES_DIRS = (
 
 #权限相关配置
 XX = "permission_dict"
+OO = "permission_menu_list"
 URL_FORMAT = "^{0}$"
 RBAC_LOGIN_URL = '/login/'
 VALID_URL_LIST = [

@@ -31,8 +31,28 @@ def login(request):
         return render(request, 'login.html', {'form': form})
 
 def index(request):
+    page_menu = {}
+    current_url = request.path_info
+    permission_menu_list = request.session[settings.OO]
+    for item in permission_menu_list:
+        url = item['url']
+        regex = settings.URL_FORMAT.format(url)
+        if re.match(regex, current_url):
+            item['opened'] = True
 
-    return HttpResponse('欢迎登入')
+        menu_id = item['menu_id']
+        opened = item.get('opened')
+
+        child = {'title': item['title'], 'url': item['url'], 'opened': opened}
+        if menu_id in page_menu:
+            page_menu[menu_id]['children'].append(child)
+            if opened:
+                page_menu[menu_id]['opened'] = opened
+        else:
+            page_menu[menu_id] = {'opened': opened, 'menu_title': item['menu_title'], 'children': [child, ]}
+
+    return render(request, 'index.html',{'page_menu':page_menu})
+
 
 
 
