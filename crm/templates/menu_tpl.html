@@ -1,0 +1,11 @@
+    {% for k,item in page_menu.items %}
+        <div class="item">
+            <div class="header">{{ item.menu_title }}</div>
+            <div class="permissions" {{ item.opened }}>
+                {% for v in item.children %}
+                    <a href="{{ v.url }}" class="{{ v.opened }}">{{ v.title }}</a>
+                {% endfor %}
+
+            </div>
+        </div>
+    {% endfor %}
