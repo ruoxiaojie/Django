@@ -1,54 +1,93 @@
-body,p,div,ul,li,h1,h2,h3,h4,h5,h6{
-    margin:0;
+html{height: 100%;}
+body.signin {
+    background: #18c8f6;
+    height: auto;
+    background:url("../img/login-background.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: rgba(255,255,255,.95);
+}
+
+.signinpanel {
+    width: 320px;
+    margin: 10% auto 0 auto;
+}
+
+.signinpanel .logopanel {
+    float: none;
+    width: auto;
     padding: 0;
+    background: none;
 }
-body{
-    background: #E9E9E9;
+
+.signinpanel .signin-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
 }
-#login{
-    width: 400px;
-    height: 250px;
-    background: #FFF;
-    margin:200px auto;
-    position: relative;
+
+.signinpanel .form-control {
+    display: block;
+    margin-top: 15px;
 }
-#login h1{
-    text-align:center;
-    position:absolute;
-    left:120px;
-    top:-40px;
-    font-size:21px;
+
+.signinpanel .uname {
+    background: #fff url(../img/user.png) no-repeat 95% center;color:#333;
 }
-#login form p{
-    text-align: center;
+
+.signinpanel .pword {
+    background: #fff url(../img/locked.png) no-repeat 95% center;color:#333;
 }
-#user{
-    background:url(../images/user.png) rgba(0,0,0,.1) no-repeat;
-    width: 200px;
-    height: 30px;
-    border:solid #ccc 1px;
+
+.signinpanel .btn {
+    margin-top: 15px;
+}
+
+.signinpanel form {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255,255,255,.3);
+    -moz-box-shadow: 0 3px 0 rgba(12, 12, 12, 0.03);
+    -webkit-box-shadow: 0 3px 0 rgba(12, 12, 12, 0.03);
+    box-shadow: 0 3px 0 rgba(12, 12, 12, 0.03);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
     border-radius: 3px;
-    padding-left: 32px;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    padding: 30px;
 }
-#pwd{
-    background: url(../images/pwd.png) rgba(0,0,0,.1) no-repeat;
-    width: 200px;
-    height: 30px;
-    border:solid #ccc 1px;
-    border-radius: 3px;
-    padding-left: 32px;
-    margin-bottom: 30px;
+
+.signup-footer{border-top: solid 1px rgba(255,255,255,.3);margin:20px 0;padding-top: 15px;}
+
+@media screen and (max-width: 768px) {
+    .signinpanel,
+    .signuppanel {
+        margin: 0 auto;
+        width: 420px!important;
+        padding: 20px;
+    }
+    .signinpanel form {
+        margin-top: 20px;
+    }
+    .signup-footer {
+        margin-bottom: 10px;
+    }
+    .signuppanel .form-control {
+        margin-bottom: 10px;
+    }
+    .signup-footer .pull-left,
+    .signup-footer .pull-right {
+        float: none !important;
+        text-align: center;
+    }
+    .signinpanel .signin-info ul {
+        display: none;
+    }
 }
-#submit{
-    width: 232px;
-    height: 30px;
-    background: rgba(0,0,0,.1);
-    border:solid #ccc 1px;
-    border-radius: 3px;
-}
-#submit:hover{
-    cursor: pointer;
-    background:#D8D8D8;
+@media screen and (max-width: 320px) {
+    .signinpanel,
+    .signuppanel {
+        margin:0 20px;
+        width:auto;
+    }
 }

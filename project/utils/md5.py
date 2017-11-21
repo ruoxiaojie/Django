@@ -1,8 +1,8 @@
 #!/usr/bin/python
 #Author:xiaojie
 # -*- coding:utf-8 -*-
-import hashlib
 
+import hashlib
 def my_md5(pwd):
     import hashlib
     obj=hashlib.md5()
