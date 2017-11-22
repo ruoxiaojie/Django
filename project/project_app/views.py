@@ -1,12 +1,13 @@
-from django.shortcuts import render,redirect,HttpResponse
+from django.shortcuts import render,redirect,HttpResponse,render_to_response
 from utils.md5 import my_md5
-# from utils.auth import AuthView
+from utils.auth import Auth
+
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 from . import models
 from django.forms import Form,fields,widgets
 from django.contrib.auth.decorators import login_required
 
-# @csrf_exempt
+
 def login(request):
     if request.method == 'GET':
         return render(request,'login.html')
@@ -26,7 +27,7 @@ def logout(request):
     return redirect('/login.html')
 
 
-@login_required
+@Auth
 def index(request):
     return HttpResponse('ok')
 
