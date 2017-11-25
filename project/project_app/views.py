@@ -29,5 +29,5 @@ def logout(request):
 
 @Auth
 def index(request):
-    return HttpResponse('ok')
+    return render(request,'index.html')
 
