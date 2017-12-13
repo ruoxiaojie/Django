@@ -24,7 +24,7 @@ def login(request):
 
 def logout(request):
     request.session.clear()
-    return redirect('/login.html')
+    return redirect('/login')
 
 
 @Auth
