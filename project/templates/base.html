@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>admin</title>
+<!--图标-->
+    <!--<link rel="shortcut icon" href="favicon.ico">-->
+    <link href="../static/bootstrap/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="../static/bootstrap/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="../static/bootstrap/css/animate.min.css" rel="stylesheet">
+    <link href=../static/bootstrap/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <link href=../static/www/baseright.css rel="stylesheet">
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="">
+{#                        #nav-header#}
+                        <div class="dropdown profile-element">
+                            <span style="padding-left: 70px"><img alt="image" class="img-circle" src="../static/img/profile_small.jpg" /></span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                               <span class="block m-t-xs" style="padding-left: 70px"><strong class="font-bold">Administrator</strong></span>
+                                <span class="text-muted text-xs block" style="padding-left: 70px">管理员<b class="caret"></b></span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a class="J_menuItem" href="#">个人资料</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="/logout/">安全退出</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">admin
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-home"></i>
+                            <span class="nav-label">主机系统</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <!-- for 循环主机 -->
+                            <li>
+                                <a class="J_menuItem" href="#" data-index="0">linux</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="#">winserver</a>
+                            </li>
+
+
+                        </ul>
+
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-bar-chart-o"></i>
+                            <span class="nav-label">主机应用</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="#">tomcat</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="#">nginx</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="#">mysql</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="#">sftp</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="#">openvpn</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">项目</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="#">tomcat <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a class="J_menuItem" href="#">生产</a>
+                                    </li>
+                                    <li><a class="J_menuItem" href="#">测试</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="J_menuItem" href="#">java-jar启动项目</a>
+                            </li>
+                            <li><a class="J_menuItem" href="#">其它项目</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">运维 </span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="#">联系人</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/logout">
+                            <i class="fa fa-home"></i>
+                            <span class="nav-label">退出</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+              <div>
+                  {% block right %}
+
+                  {% endblock %}
+              </div>
+        </div>
+        <!--右侧部分结束-->
+</div>
+    <script src="../static/bootstrap/js/jquery.min.js?v=2.1.4"></script>  <!-- 菜单样式 -->
+    <script src="../static/bootstrap/js/bootstrap.min.js?v=3.35"></script>
+    <script src="../static/bootstrap/js/jquery.metisMenu.js"></script>
+    <script src="../static/bootstrap/js/layer.min.js"></script>
+    <script src="../static/bootstrap/js/hplus.min.js?v=4.0.0"></script>
+
+
+</body>
+</html>
